@@ -1,0 +1,22 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flixlix/ws2223-programmiersprachen-02.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flixlix/ws2223-programmiersprachen-02/issues"
+  },
+  "homepage": "https://github.com/flixlix/ws2223-programmiersprachen-02#readme",
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}

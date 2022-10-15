@@ -1,0 +1,707 @@
+@import url("https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Lato:wght@100&family=Montserrat&family=Open+Sans&family=Oswald:wght@300;400&family=Roboto+Mono&family=Roboto:wght@100;400&display=swap");
+
+.theme-light {
+  --background-color: 255, 250, 250;
+  --secondary-background-color: 240, 235, 235;
+  --primary-text-color: 33, 33, 37;
+  --secondary-text-color: 94, 98, 103;
+  --box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  --accent-color: 227, 31, 38;
+  --image-filter: 100%;
+  --github-icon-invert-fitler: 0;
+}
+
+.theme-dark {
+  --background-color: 40, 38, 38;
+  --secondary-background-color: 50, 48, 48;
+  --primary-text-color: 247, 247, 255;
+  --secondary-text-color: 94, 98, 103;
+  --box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+  --accent-color: 227, 31, 38;
+  --image-filter: 50%;
+  --github-icon-invert-fitler: 1;
+}
+
+* {
+    color: var(--primary-text-color);
+}
+
+header {
+  position: fixed;
+  /* don't let header scroll with the rest of the window */
+  top: 0%;
+  /* place header on the topof the window */
+  width: 100%;
+  /* use whole width of the window */
+  height: 100px;
+  /* height of the header */
+  background-color: rgb(var(--background-color));
+  /* height of the header */
+  box-shadow: var(--box-shadow);
+  /* outer shadow of the header with blur */
+  display: flex;
+  /* rendering layout behaviour */
+  flex-direction: row;
+  /* distribute items horizontally */
+  justify-content: space-between;
+  /* items are evenly distributed in the line; first item is on the start line, last item on the end line */
+  align-items: center;
+  /* items are centered in the cross-axis */
+  z-index: 1001;
+  /* make sure header appears on top of all other elements */
+}
+
+nav {
+  display: flex;
+  /* rendering layout behaviour */
+  align-items: center;
+  /* items are centered in the cross-axis */
+  gap: 1vw;
+  /* space between navigation items, only applied for between items, 1% of viewport width */
+  padding-right: 2vw;
+  /* right padding of navigation container at 2% of viewport width */
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+}
+
+.nav-content:hover {
+  box-shadow: inset 0px -2px 0 rgba(var(--accent-color), 0.3);
+  /* Box-Shadow: */
+  /* 1st: from outer to an inner shadow */
+  /* 2nd: offset in x-axis */
+  /* 3rd: offset in y-axis */
+  /* 4th value: blur */
+  /* 5th value: color of border */
+}
+
+#logo {
+  height: 60px;
+  /* height of logoi pixels, 60px */
+  padding-left: 2vw;
+  /* space to the left of the logo, 2% of viewport width */
+}
+
+header .active {
+  font-weight: bold;
+  box-shadow: inset 0px -2px 0 rgba(var(--accent-color), 0.5);
+}
+
+#nav ul * {
+  list-style: none;
+  text-decoration: none;
+  display: inline;
+  font-size: calc(12px + (14 - 12) * (100vw - 360px) / (1200 - 360));
+  /* min font-size: 12px */
+  /* max font-size: 14px */
+  /* min vw: 360px */
+  /* max vw: 1200px */
+  text-decoration: none;
+  /* hide underline of link */
+  padding: 0.7vw;
+  margin: 0;
+  /* space around link texts, 1,5% of viewport width */
+  color: var(--primary-text-color);
+  /* text color defined by variable */
+}
+
+#header_spacing {
+  margin-bottom: 120px;
+  /* avoid content going below header before scrolling */
+}
+
+.action-button {
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.action-button svg {
+  fill: rgba(var(--primary-text-color), 0.7);
+  transition: all ease-in-out 0.4s;
+}
+
+.action-button:hover svg {
+  fill: rgb(var(--primary-text-color));
+  transform: scale(1.2);
+}
+
+.hamburger-menu,
+.hamburger-menu *,
+.hamburger-menu * *,
+.action-button-list-item {
+  width: 0;
+  margin: 0;
+  padding: 0;
+  display: none;
+  visibility: hidden;
+}
+
+.collapsible-menu-navigation-container {
+  position: fixed;
+  background-color: rgb(var(--background-color));
+  border: 0.5px solid rgba(var(--primary-text-color), 0.5);
+  margin-left: -1px;
+  width: 100%;
+  z-index: -1000;
+  top: 70px;
+  /*     box-shadow: var(--box-shadow); */
+}
+
+.collapsible-menu-navigation-container ul {
+  list-style: none;
+  line-height: 3;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-inline-start: 0px;
+}
+
+.collapsible-menu-navigation-container ul li {
+  width: 90%;
+  text-align: start;
+}
+
+#collapsible-menu-navigation-container {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 1000px) /* mobile view */ {
+  .hamburger-menu,
+  .hamburger-menu *,
+  .hamburger-menu * *,
+  .action-button-list-item {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+    visibility: visible;
+  }
+
+  #nav .nav-content,
+  #nav .active {
+    width: 0;
+    margin: 0;
+    padding: 0;
+    display: none;
+    visibility: hidden;
+  }
+
+  /* select main element containing content */
+  /*     .mode-change {
+        visibility: hidden;
+        position: absolute;
+        display: none;
+    } */
+
+  header {
+    height: 70px;
+    /* smaller header */
+  }
+
+  #logo {
+    height: 45px;
+    /* smaller logo */
+  }
+
+  .content {
+    grid-template-columns: 100%;
+    /* one column */
+  }
+
+  .note {
+    margin-left: 0px;
+    /* no indentation to note box */
+  }
+
+  .short_description * ul {
+    line-height: 2.7;
+    /* shorter line height */
+  }
+}
+
+body {
+  font-family: "Roboto Mono";
+}
+
+main {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin: 0 0vw;
+  transition: all 0.5s;
+}
+
+.aboutmemain {
+  margin: 100px 0 0 0;
+  padding: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 350px auto;
+}
+
+.content .long_text {
+  margin: 30px;
+  margin-top: 31px;
+
+  line-height: 2;
+  text-align: start;
+}
+
+.short_description {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1rem;
+  justify-content: center;
+  justify-items: center;
+}
+
+.short_description * ul {
+  padding: 0px;
+
+  list-style-type: none;
+  line-height: 4;
+}
+
+.short_description .identity * {
+  font-weight: bold;
+  justify-self: end;
+  text-align: end;
+}
+
+.short_description .state * {
+  text-align: start;
+}
+
+.heading h1 {
+  font-size: 2.5em;
+}
+
+.profile_photo_container {
+  justify-content: center;
+  height: 250px;
+}
+
+#profile_photo {
+  height: 100%;
+  border-radius: 50%;
+}
+
+.parallax {
+  /* The image used */
+
+  /* filter:brightness(var(--image-filter)); */
+
+  /* Set a specific height */
+  height: 100vh;
+  width: 100%;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#parallaxmaat {
+  background-image: url("images/maat.jpg");
+}
+
+#parallaxprofile {
+  background-image: url("images/profile_photo.jpg");
+}
+
+#parallaxponte25abr {
+  background-image: url("images/pontevdag.jpg");
+}
+
+#parallaxpracadocomercio {
+  background-image: url("images/pracadocomercio.jpg");
+}
+
+#parallaxazulejos {
+  background-image: url("images/azulejos.jpg");
+  position: relative;
+  /* set position to relative so that absolute set child element stays inside parent element */
+}
+
+.heading {
+  position: absolute;
+  top: 50%;
+  /* center vertically */
+  left: 50%;
+  /* center horizontally */
+  transform: translate(-50%, -50%);
+  /* compensate for size of element */
+  text-align: center;
+  /* align text in the center */
+}
+
+.introduction {
+  color: rgb(var(--background-color));
+}
+
+.name {
+  padding: 18px 20px;
+  margin: 0 auto;
+  width: max-content;
+  color: rgb(var(--primary-text-color));
+  background-color: rgb(var(--background-color));
+}
+
+.parallax-text {
+  padding: 40px 20vw;
+}
+
+.contact-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.contact-text {
+  color: rgb(var(--primary-text-color));
+  background-color: rgb(var(--background-color));
+  padding: 1vh 0;
+  width: 200px;
+  margin: 0;
+}
+
+.badges-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.badge {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgb(var(--background-color));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  aspect-ratio: 1/1;
+  transition: ease-out 200ms all;
+}
+
+.badge:hover {
+  transform: scale(1.2);
+}
+
+.badge * {
+  width: 30px;
+}
+
+#github-badge * {
+  filter: invert(var(--github-icon-invert-fitler));
+}
+
+/* The alert message box */
+.info-popup {
+  opacity: 0;
+  /* hide popup by default */
+  transition: all 1s;
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: max-content;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #067bc2;
+  /* Red */
+  color: rgb(var(--background-color));
+  margin-bottom: 10px;
+}
+
+.info-popup b {
+  color: rgb(var(--background-color));
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: rgb(var(--background-color));
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: rgb(var(--primary-text-color));
+}
+
+@media (max-width: 1000px) {
+  .parallax-text {
+    padding: 40px 2vw;
+  }
+  .info-popup {
+    width: 80%;
+  }
+
+  .aboutmemain {
+    margin: 70px 0 0 0;
+  }
+
+  .profile_photo_container {
+    height: 200px;
+  }
+
+  .content {
+    grid-template-columns: 100%;
+  }
+
+  .short_description * ul {
+    line-height: 2.7;
+  }
+}
+
+/* Global variables */
+:root {
+  /* COLORS */
+  /* Global */
+  --accent-color: 227, 31, 38;
+  /* Text */
+  --primary-text-color: rgb(33, 33, 37);
+  --secondary-text-color: rgb(94, 98, 103);
+  --box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.16);
+}
+
+body {
+  font-family: "Roboto Mono";
+  margin: 0;
+  /* make use of whole viewport width, without margins*/
+  background-color: #fefefe;
+}
+
+main {
+  margin-top: 130px;
+  /* don't let main start behind header */
+  margin-left: 10%;
+  /* don't let main in 10% left, header can surpass this margin */
+  margin-right: 10%;
+  /* don't let main in 10% right, header can surpass this margin */
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  gap: 20px;
+}
+
+#header_what_is_html {
+  margin-top: -5px;
+}
+
+/* cards container */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 20px;
+  gap: 20px;
+  max-width: 400px;
+  min-width: 20px;
+}
+
+/* card conatiner */
+
+.card h2 {
+  margin: 0;
+  /* no margin */
+}
+
+/* header of card */
+
+.card_content {
+  display: flex;
+  flex-direction: column;
+  /* place vertically */
+  gap: 10px;
+  /* gap between paragraphs and img, for example */
+  background-color: white;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* text container inside card container */
+
+#url_img {
+  outline: 2px solid #999;
+  object-fit: cover;
+  /* crop oversized margins instead of stretching */
+  justify-content: center;
+  border-radius: 5px;
+  /* rounded corners */
+  width: 100%;
+  /* take up whole with of parent container */
+  height: 110px;
+  /* limit height */
+}
+
+.content {
+  display: grid;
+  margin-top: 30px;
+  grid-template-columns: auto 400px;
+  /* second column with fixed width, first column uses rest of width */
+  column-gap: 50px;
+  /* space between two columns */
+}
+
+p {
+  line-height: 1.5;
+  /* spacing between lines */
+}
+
+code {
+  font-family: "Roboto Mono";
+  background-color: #eee;
+  /* color of code block */
+  border: 1px solid #999;
+  /* border color and style */
+  display: block;
+  /* take up wholle width of parent container */
+  border-radius: 10px;
+  /* rounded corners */
+  margin: 10px 0px;
+  /* top and bottom margins, no side margin */
+  padding: 15px;
+  /* inner padding between text and border */
+  line-height: 2;
+  /* larger spacing between lines */
+}
+
+.note {
+  margin: 0 10%;
+  /* indent block to the right */
+  border-radius: 10px;
+  /* rounded corners */
+  padding: 10px;
+  /* space between child elements and border */
+  border: 3px solid rgba(255, 0, 0, 0.4);
+}
+
+/* note block container */
+
+.yellow {
+  background-color: rgba(242, 233, 78, 0.4);
+  /* yellow background color with some transparency */
+  padding: 2px;
+  /* space between text and end of element */
+  border-radius: 3px;
+  /* rounded corners */
+  font-weight: bold;
+}
+
+/* span element with yellow class */
+
+.blue {
+  background-color: rgba(66, 129, 164, 0.4);
+  /* yellow background color with some transparency */
+  padding: 2px;
+  /* space between text and end of element */
+  border-radius: 3px;
+  /* rounded corners */
+  font-weight: bold;
+}
+
+/* span element with blue class */
+
+.list_elements {
+  line-height: 1.5;
+  /* spacing between lines */
+  list-style-type: none;
+  /* don't show bullet point */
+  margin-top: 0;
+  /* no spacing to text above */
+}
+
+.list_elements li:before {
+  content: "\2D";
+  /* dash / hyphen symobl */
+  position: absolute;
+  /* override parent positioning */
+  margin-left: -15px;
+  /* indent 15px to the left */
+}
+
+/* add dash instead of bullet point */
+
+#starting_text {
+  margin-bottom: 0;
+}
+
+@media (max-width: 1000px) /* mobile view */ {
+  main {
+    margin: 90px 2%;
+  }
+
+  header {
+    height: 70px;
+  }
+
+  #logo {
+    height: 50px;
+  }
+
+  .content {
+    grid-template-columns: 100%;
+  }
+
+  .note {
+    margin-left: 0px;
+  }
+
+  .short_description * ul {
+    line-height: 2.7;
+  }
+}
+
+main ul {
+  list-style-type: none;
+}
+
+/* select all unordered lists within the main element, again, to avoid selecting ul's in the header and footer */
+
+main ul li:before {
+  content: "\2014";
+  /* hyphen as content */
+  position: absolute;
+  /* remove from document flow */
+  margin-left: -20px;
+  /* move to the left by 20px */
+}
+
+/* select all li elements with the pseudo class before within ul elements within the main element */
+
+h1 {
+  margin-bottom: 0px;
+}
+
+h2 {
+  margin-top: 0px;
+  margin-bottom: 30px;
+}

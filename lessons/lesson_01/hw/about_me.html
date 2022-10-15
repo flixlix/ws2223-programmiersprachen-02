@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Me Page</title>
+    <link rel="stylesheet" href="about_me_style.css">
+  </head>
+  <body>
+    <header>
+      <a class="logo" href="index.php">
+        <img id="logo" alt="Logo" />
+        <!-- main logo -->
+      </a>
+      <!-- redirect to homepage -->
+      <nav id="nav">
+        <ul>
+          <li><a class="nav-content" href="index.php">Home</a></li>
+          <!-- redirect to homepage -->
+          <li><a class="nav-content" href="tutorial_index.php">Tutorial</a></li>
+          <!-- redirect to tutorial page -->
+          <li>
+            <a class="nav-content" href="tscheck_it_index.php">Tscheck it</a>
+          </li>
+          <!-- redirect to Tscheck it page -->
+          <li><a class="nav-content" href="about_me_index.php">About me</a></li>
+          <!-- redirect to about me page -->
+          <li>
+            <div class="action-button mode-change" onclick="toggleTheme()">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path
+                  d="M7.5,2C5.71,3.15 4.5,5.18 4.5,7.5C4.5,9.82 5.71,11.85 7.53,13C4.46,13 2,10.54 2,7.5A5.5,5.5 0 0,1 7.5,2M19.07,3.5L20.5,4.93L4.93,20.5L3.5,19.07L19.07,3.5M12.89,5.93L11.41,5L9.97,6L10.39,4.3L9,3.24L10.75,3.12L11.33,1.47L12,3.1L13.73,3.13L12.38,4.26L12.89,5.93M9.59,9.54L8.43,8.81L7.31,9.59L7.65,8.27L6.56,7.44L7.92,7.35L8.37,6.06L8.88,7.33L10.24,7.36L9.19,8.23L9.59,9.54M19,13.5A5.5,5.5 0 0,1 13.5,19C12.28,19 11.15,18.6 10.24,17.93L17.93,10.24C18.6,11.15 19,12.28 19,13.5M14.6,20.08L17.37,18.93L17.13,22.28L14.6,20.08M18.93,17.38L20.08,14.61L22.28,17.15L18.93,17.38M20.08,12.42L18.94,9.64L22.28,9.88L20.08,12.42M9.63,18.93L12.4,20.08L9.87,22.27L9.63,18.93Z"
+                />
+              </svg>
+            </div>
+          </li>
+          <li class="action-button-list-item">
+            <div
+              class="action-button hamburger-menu"
+              id="hambuger-menu-button"
+              onclick="toggleDropdownNav()"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24">
+                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+              </svg>
+            </div>
+          </li>
+        </ul>
+        <!-- navigation list -->
+      </nav>
+      <!-- navigations -->
+
+      <div
+        class="collapsible-menu-navigation-container"
+        id="collapsible-menu-navigation-container"
+      >
+        <nav>
+          <ul>
+            <li><a class="nav-content" href="index.php">Home</a></li>
+            <!-- redirect to homepage -->
+            <li>
+              <hr />
+            </li>
+            <li>
+              <a class="nav-content" href="tutorial_index.php">Tutorial</a>
+            </li>
+            <!-- redirect to tutorial page -->
+            <li>
+              <hr />
+            </li>
+            <li>
+              <a class="nav-content" href="tscheck_it_index.php">Tscheck it</a>
+            </li>
+            <!-- redirect to Tscheck it page -->
+            <li>
+              <hr />
+            </li>
+            <li>
+              <a class="nav-content" href="about_me_index.php">About me</a>
+            </li>
+            <!-- redirect to about me page -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <script src="theme_button.js"></script>
+    <script src="hamburger_menu_button.js"></script>
+    <!-- dynamic colors, button action and logo changing according to theme -->
+
+    <!-- light and dark mode -->
+    <main class="aboutmemain">
+      <div class="parallax" id="parallaxmaat"></div>
+      <div class="heading">
+        <p class="introduction">Hello, my name is</p>
+        <h1 class="name">Luca Félix</h1>
+      </div>
+      <div class="short_description parallax-text">
+        <div class="identity">
+          <ul>
+            <li>Last name:</li>
+            <li>First name:</li>
+            <li>Birthdate:</li>
+            <li>Origin:</li>
+            <li>Profession:</li>
+          </ul>
+        </div>
+        <div class="state">
+          <ul>
+            <li>Ziegler Félix</li>
+            <li>Luca Mário</li>
+            <li>30.07.2002</li>
+            <li>Lisbon, Portugal</li>
+            <li>Student</li>
+          </ul>
+        </div>
+      </div>
+      <div class="parallax" id="parallaxprofile"></div>
+      <p class="parallax-text">
+        I was born at a very young age in Lisbon:) In my first few years, I
+        visited a portuguese school. From 4th class up until my Abitur in my
+        12th class, I visited the "Deutsche Schule Lissabon". After my Abitur, I
+        studied "Elektro- und Informationstechnik" for 3 semesters in the
+        "Technische Hochschule Mittelhessen" in Gießen, Germany. At the moment,
+        I'm studying "Internet of Things" in the "Hochschule für Gestaltung" in
+        Schwäbisch Gmünd, Germany.
+      </p>
+      <div class="parallax" id="parallaxponte25abr"></div>
+      <p class="parallax-text">
+        I was always a very "technology interested" person. For 2 years, I
+        focused on filmmaking and photography. In the two years that followed,
+        my main hobby was DJ'ing. My currently biggest (and hopefully, longest
+        lasting ;)) hobby is home automation, since it combines electricity and
+        programming.
+      </p>
+      <div class="parallax" id="parallaxpracadocomercio"></div>
+      <p class="parallax-text">
+        In general, I am a very active person. I love riding my bike, exploring
+        new trails and cities.
+        <br />
+        I also find joy in Kayaking, which is easier to do in Portugal than in
+        Germany.
+      </p>
+      <div class="parallax" id="parallaxazulejos">
+        <div class="contact-container">
+          <h2 class="contact-text">Contact me</h2>
+          <div class="badges-container">
+            <a href="https://github.com/flixlix" target="_blank">
+              <div class="badge" id="github-badge">
+                <img src="images/github.png" alt="Github Badge" />
+              </div>
+            </a>
+            <a href="mailto:luca.ziegler.felix@gmail.com" onClick="copyText()">
+              <div class="badge" id="gmail-badge">
+                <img src="images/gmail.png" alt="Gmail Badge" />
+              </div>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/luca-f%C3%A9lix-36a0931b4/"
+              target="_blank"
+            >
+              <div class="badge" id="linkedin-badge">
+                <img src="images/linkedin.png" alt="LinkedIn Badge" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="info-popup" id="copied-text-confirmation">
+        <span class="closebtn" onclick="this.parentElement.style.opacity='0';"
+          >&times;</span
+        >
+        <b>Info!</b> Copied "luca.ziegler.felix@gmail.com" to the clipboard
+      </div>
+    </main>
+  </body>
+</html>
