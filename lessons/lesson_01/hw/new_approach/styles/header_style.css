@@ -1,0 +1,81 @@
+header {
+  position: sticky;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  background-color: rgb(var(--app-header-background-color));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-outside);
+  box-shadow: var(--card-box-shadow);
+}
+
+nav ul {
+  align-self: center;
+  list-style: none;
+  display: flex;
+  gap: 4vw;
+}
+
+.theme-toggle {
+  width: 20px;
+}
+
+.logo-container {
+  font-weight: 100;
+  font-size: 2.5rem;
+}
+
+nav a {
+  color: rgb(var(--primary-text-color));
+  text-decoration: none;
+  position: relative;
+}
+
+a {
+  box-shadow: inset 0 0 0 0 rgb(var(--primary-text-color));
+  color: rgb(var(--primary-text-color));
+  padding: 0.25rem;
+  border-radius: 2px;
+  transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transform: scale(1);
+}
+a:hover {
+  color: rgb(var(--primary-background-color));
+  box-shadow: inset 200px 0 0 0 rgb(var(--primary-text-color));
+  transform: scale(0.5);
+}
+
+
+.action-button {
+  cursor: pointer;
+}
+
+.theme-toggle {
+  fill: rgb(var(--primary-text-color));
+  opacity: 0.7;
+  transition: all ease-in-out 0.2s;
+}
+
+.action-button:hover svg {
+  fill: rgb(var(--primary-text-color));
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.action-button:active svg {
+  fill: rgb(var(--primary-text-color));
+  transform: scale(1);
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    height: 70px;
+  }
+
+  .logo-container {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+  /* Header */
+  --app-header-background-color: 248, 248, 248;
+  --app-header-text-color: 95, 99, 104;
+  /* Main Interface Colors */
+  --primary-color: 26, 115, 232;
+  --light-primary-color: var(--primary-color);
+  --primary-background-color: 248, 248, 248;
+  --secondary-background-color: 230, 230, 230;
+  --divider-color: var(--primary-background-color);
+  --accent-color: 26, 115, 232;
+  /* Text */
+  --primary-text-color: 32, 33, 36;
+  --secondary-text-color: 95, 99, 104;
+  --text-primary-color: 255, 255, 255;
+  --disabled-text-color: 95, 99, 104, 0.4;
+  --card-border-radius: 10px;
+  --card-background-color: 255, 255, 255;
+  --card-box-shadow: 1px 1px 5px 0px rgb(190, 190, 190);
+  --spacing-outside: 0 7%;
+  --mobile-spacing-outside: 0 3.5%;
+}
+
+[data-theme="dark"] {
+  /* Header */
+  --app-header-background-color: 23, 23, 23;
+  --app-header-text-color: 198, 203, 210;
+  /* Main Interface Colors */
+  --primary-color: 138, 180, 248;
+  --light-primary-color: var(--primary-color);
+  --primary-background-color: 23, 23, 23;
+  --secondary-background-color: 32, 33, 36;
+  --divider-color: var(--primary-background-color);
+  --accent-color: 138, 180, 248;
+  /* Text */
+  --primary-text-color: 242, 242, 242;
+  --secondary-text-color: 166, 166, 166;
+  --text-primary-color: var(--primary-text-color);
+  --disabled-text-color: 184, 190, 199, 0.4;
+  --card-background-color: 23, 23, 23 /* 32, 33, 36 */;
+  --card-box-shadow: 1px 1px 5px 0px rgb(12, 12, 14);
+  --card-border-radius: 10px;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(var(--secondary-background-color));
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.6rem;
+  color: rgb(var(--primary-text-color));
+}
+
+* {
+  box-sizing: border-box;
+  transition: background-color 1s ease, color 1s ease;
+}
+
+main {
+  margin: var(--spacing-outside);
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    margin: var(--mobile-spacing-outside);
+  }
+}

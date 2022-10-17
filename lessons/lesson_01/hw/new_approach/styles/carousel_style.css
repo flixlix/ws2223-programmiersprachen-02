@@ -1,0 +1,146 @@
+/* put images between arrows */
+.carousel-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 1rem;
+}
+
+/* positioning and styling of arrows */
+.page-arrows {
+  display: flex;
+  align-items: flex-start;
+}
+
+.page-arrows > div {
+  position: sticky;
+  top: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  width: 3rem;
+}
+
+.page-arrows > div:hover {
+  background-color: rgba(var(--primary-text-color), 0.07);
+}
+
+.page-arrows svg {
+  fill: rgb(var(--primary-text-color));
+  margin: 0.5rem;
+}
+
+/* sizing and design of image in carousel */
+.main-project-image {
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-item-container img {
+  max-width: 100%;
+}
+
+.carousel-item-container {
+  display: none;
+}
+
+.carousel-item-container {
+  background-color: rgb(var(--card-background-color));
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+.project-description {
+  display: grid;
+  grid-template-columns: 70% auto;
+  column-gap: 1rem;
+}
+
+.sidebar-view > :not(.greyed-out) {
+  margin: 0;
+  padding-left: 1rem;
+}
+ul.minus-symbol {
+  list-style-type: none;
+}
+ul.minus-symbol > li:before {
+  content: "-";
+  margin-right: 0.5rem;
+}
+
+p.greyed-out {
+  color: rgb(var(--secondary-text-color));
+  margin: 0.5rem 0;
+}
+
+h1.project-title {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.left,
+.right {
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+}
+
+.left {
+  animation-name: leftToRight;
+}
+
+.right {
+  animation-name: rightToLeft;
+}
+
+.horizontal-line {
+  height: 1px;
+  width: 100%;
+  display: none;
+  border: 1px solid rgb(var(--primary-text-color))
+}
+
+@keyframes leftToRight {
+  from {
+    transform: translate(-20%, 0);
+  }
+  to {
+    transform: translate(0, 0%);
+  }
+}
+
+@keyframes rightToLeft {
+  from {
+    transform: translate(50%, 0);
+  }
+  to {
+    transform: translate(0, 0%);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .page-arrows {
+    display: none;
+  }
+
+  .carousel-container {
+    grid-template-columns: 100%;
+  }
+
+  .project-description {
+    grid-template-columns: 100%;
+  }
+
+  .horizontal-line {
+    display: block;
+  }
+}

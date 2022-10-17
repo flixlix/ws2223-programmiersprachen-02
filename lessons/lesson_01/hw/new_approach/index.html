@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main_style.css" />
+    <link rel="stylesheet" href="styles/header_style.css" />
+    <link rel="stylesheet" href="styles/carousel_style.css" />
+    <script defer src="themeButton.js"></script>
+    <script defer src="carousel.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo-container">Luca Félix</div>
+      <nav>
+        <ul>
+          <li>
+            <a href="portfolio.html">Porfolio</a>
+          </li>
+          <li>
+            <a href="about_me.html">About Me</a>
+          </li>
+          <li>
+            <div class="action-button mode-change" id="theme-toggle">
+              <svg class="theme-toggle" viewBox="0 0 24 24">
+                <path
+                  d="M7.5 2c-1.79 1.15-3 3.18-3 5.5s1.21 4.35 3.03 5.5C4.46 13 2 10.54 2 7.5A5.5 5.5 0 0 1 7.5 2m11.57 1.5 1.43 1.43L4.93 20.5 3.5 19.07 19.07 3.5m-6.18 2.43L11.41 5 9.97 6l.42-1.7L9 3.24l1.75-.12.58-1.65L12 3.1l1.73.03-1.35 1.13.51 1.67m-3.3 3.61-1.16-.73-1.12.78.34-1.32-1.09-.83 1.36-.09.45-1.29.51 1.27 1.36.03-1.05.87.4 1.31M19 13.5a5.5 5.5 0 0 1-5.5 5.5c-1.22 0-2.35-.4-3.26-1.07l7.69-7.69c.67.91 1.07 2.04 1.07 3.26m-4.4 6.58 2.77-1.15-.24 3.35-2.53-2.2m4.33-2.7 1.15-2.77 2.2 2.54-3.35.23m1.15-4.96-1.14-2.78 3.34.24-2.2 2.54M9.63 18.93l2.77 1.15-2.53 2.19-.24-3.34z"
+                />
+              </svg>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="carousel-container">
+        <div class="page-arrows">
+          <div onclick="previousItem()" class="previous-arrow-container">
+            <svg class="previous" viewBox="0 0 24 24">
+              <path
+                d="M15.41 16.58 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.42z"
+              />
+            </svg>
+            <div class="background"></div>
+          </div>
+        </div>
+        <div class="carousel-items-container">
+          <section class="carousel-item-container" id="carousel-container-1">
+            <h1 class="project-title">
+              Spiel - Rock, Paper, Scissors, Spock, Lizard
+            </h1>
+            <img
+              class="main-project-image"
+              src="img/rock_paper_scissors_project.png"
+              alt="Rock Paper Scissors Project Image"
+            />
+            <div class="project-description">
+              <div class="main-view">
+                <img
+                  src="img/programmiersprachen_01/main_screen.png"
+                  alt="Main Screen of the Game"
+                />
+                <p>
+                  Als Aufgabe galt es, ein Spiel mit der Logik von Schere,
+                  Stein, Papier zu programmieren. Ich habe HTML für den Inhalt
+                  und die Stuktur des Spiels verwendet. Mit CSS habe ich alle
+                  Elemente stilisiert. Javascript habe ich hauptsächlich für die
+                  Logik des Spiels benutzt. Am Ende habe ich auch Bonus-Features
+                  implementiert, wie zum Beispiel das Feuerwerk, das Spiel-Setup
+                  und die Tabelle der Ergebnisse.
+                </p>
+                <h2>Spiel-Setup</h2>
+                <img
+                  src="img/programmiersprachen_01/setup.png"
+                  alt="Setup of the Game"
+                />
+                <p>
+                  In diesem Popup kann der User Parameter einstellen, wie zum
+                  Beispiel die Farben und die Icons des Spielers bzw. des
+                  Computers. Bei jedem Parameter werden mithilfe von JavaScript
+                  mehrere Checks durchgeführt, zum Beispiel die beiden Farben
+                  dürfen nicht zu ähnlich sein.
+                </p>
+                <h2>Ergebnistabelle</h2>
+                <img
+                  src="img/programmiersprachen_01/results_table.png"
+                  alt="Table of Results at the end of the Game"
+                />
+                <p>
+                  Am Ende des Spiels kann man sich eine Ergebnistabelle anzeigen
+                  lassen. Hier werden die eingegebene Parameter und die
+                  Spieldauer eingeblendet. Außerdem sieht man hier die
+                  Ergebnisse jeder Runde. Es ist auch möglich, den Inhalt dieser
+                  Tabelle herunterzuladen.
+                </p>
+              </div>
+              <hr class="horizontal-line"/>
+              <div class="sidebar-view">
+                <p class="greyed-out">Betreuung</p>
+                <ul class="minus-symbol">
+                  <li>Asisa Asseily</li>
+                  <li>Ekaterina Fedotova</li>
+                  <li>Kathrin Radke</li>
+                </ul>
+                <p class="greyed-out">Sprachen</p>
+                <ul class="minus-symbol">
+                  <li>JS (49.8% | 1265 lines)</li>
+                  <li>HTML (18.5% | 299 lines)</li>
+                  <li>CSS (31.7% | 971 lines)</li>
+                </ul>
+                <p class="greyed-out">Fun score</p>
+                <p>8/10</p>
+                <p class="greyed-out">Difficulty score</p>
+                <p>7/10</p>
+              </div>
+            </div>
+          </section>
+          <section class="carousel-item-container" id="carousel-container-2">
+            <h1 class="project-title">Informationsgraphik - Bike Parts</h1>
+            <img
+              class="main-project-image"
+              src="img/bike_parts_project.png"
+              alt="Bike Parts Project Image"
+            />
+            <div class="project-description">
+              <div class="main-view">
+                <img
+                  src="img/entwurfgrundlagen_01/main_screen.png"
+                  alt="Main Screen of the Project"
+                />
+                <p>
+                  Aufgabe war es, ein Informationssystem zu entwickeln, das aus
+                  mindestens 3 Informationsebenen besteht. Als Thema habe ich
+                  Fahrradkomponenten ausgewählt. In der ersten Informationsebene
+                  entscheidet man sich für die Art des Fahrrads, zum Beispiel
+                  „Fully“. In der zweiten bene wählt man die Komponente, zum
+                  Beispiel „Federgabel“. In der dritten Ebene sucht man das
+                  genaue Modell aus. In der vierten Ebene wird die Detailansicht
+                  gezeigt.
+                </p>
+                <h2>Prozess</h2>
+                <h3>Struktur des Informationssystems</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/struktur.png"
+                  alt="Struktur des Projektes"
+                />
+                <p>
+                  Zu Beginn des Semesters habe ich die Struktur in Form einer
+                  Tabelle aufgebaut. Dafür habe ich anhand von einem Beispiel
+                  verschiedene Ebenen erstellt. In diesem Fall wählte ich
+                  „Mountainbike“ auf der ersten Ebene, „Federgabel“ auf der
+                  zweiten und „RockShox Lyrik Ultimate 2021“ auf der dritten.
+                  Anschließend sieht man in der Detailansicht die verschiedene
+                  Eigenschaften zum ausgewählten Modell.
+                </p>
+                <h3>Lo-Fi Skizzen</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/lo_fi_skizzen.png"
+                  alt="Lo-Fi Skizzen"
+                />
+                <p>
+                  Am Anfang des Projektes habe ich viele verschiedene Skizzen
+                  mit der Hand erstellt. Dabei habe ich für jede
+                  Informationsebene mehrere Anordnungen ausprobiert. Im
+                  Anschluss habe ich mich entweder, für eine Variante
+                  entschieden oder eine Mischung aus den Varianten erstellt. Bei
+                  der Entscheidung war ein wichtiges Kriterium, dass jeder
+                  Nutzer durch das Informationssystem ohne Probleme und intuitiv
+                  navigieren kann.
+                </p>
+                <h3>Mid-Fi Skizzen</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/mid_fi.png"
+                  alt="Mid-Fi Skizzen"
+                />
+                <p>
+                  Bei dem Mid-Fi Design habe ich mich bereits für die Layouts
+                  der verschiedenen Ebenen entschieden. Außerdem habe ich
+                  begonnen, die Skizzen in Adobe Xd zu übertragen. Danach habe
+                  ich mich für eine Farbpalette mit orange entschieden, da diese
+                  Farbe für Spaß und Abenteuer steht. Hier habe ich klickbare
+                  Elemente eingearbeitet, mit denen der Nutzer über die vier
+                  Ebenen navigieren kann.
+                </p>
+                <h2>HI-FI / Finaler Prototyp</h2>
+                <h3>Homepage</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/homepage.png"
+                  alt="Homepage"
+                />
+                <p>
+                  In der Homepage sind die verschiedene Arten von Fahrräder in
+                  Kategorien und Subkategorien eingeteilt. Es gibt zum Beispiel
+                  innerhalb der Kategorie “Gelände” und eine Subkategorie
+                  “Fully”. Der User kann entweder auf das Photo oder auf dem
+                  Text klicken, um eine Art von Fahrrad auszuwählen.
+                </p>
+                <h3>Komponenten</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/komponenten.png"
+                  alt="Komponenten Screen"
+                />
+                <p>
+                  Die Ansicht der Komponenten wurde so gestaltet, dass jede
+                  Komponente direkt mit einem link verbunden ist. Dadurch wurde
+                  erreicht, dass Menschen ohne Erfahrung mit Fahrradkomponenten,
+                  oder wenig Deutschkenntnisse, problemlos die gesuchte
+                  Komponente finden können.
+                </p>
+                <h3>Marke & Modell</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/hifi_modell.png"
+                  alt="Marke & Modell"
+                />
+                <p>
+                  In dieser Ansicht werden unterschiedliche Marken und Modelle
+                  der ausgewählten Komponente, passend zum Fahrradtyp,
+                  angezeigt.
+                </p>
+                <h3>Marke & Modell</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/hifi_modell.png"
+                  alt="Marke & Modell"
+                />
+                <p>
+                  In dieser Ansicht werden unterschiedliche Marken und Modelle
+                  der ausgewählten Komponente, passend zum Fahrradtyp,
+                  angezeigt.
+                </p>
+                <h3>Detailansicht</h3>
+                <img
+                  src="img/entwurfgrundlagen_01/hifi_detailansicht_scroll.png"
+                  alt="Detailansicht"
+                />
+                <p>
+                  Die letzte Informationsebene enthaltet ein Aktionsbild auf
+                  voller Bildschirmbreite. Unterhalb des Bildes ist der Name der
+                  Komponente und ein Einführungstext eingeblendet. Zunächst gibt
+                  es eine Bewertung in einer Skala von 1 bis 5 Sternen. Danach
+                  gibt es eine Abteilung mit Spezifikationen zur Komponente.
+                  Zuletzt gibt es eine Abwechslung zwischen einen passenden Bild
+                  und etwas Fließtext zur Komponente.
+                </p>
+              </div>
+              <hr class="horizontal-line"/>
+              <div class="sidebar-view">
+                <p class="greyed-out">Betreuung</p>
+                <p>Philipp Brucker</p>
+                <p class="greyed-out">Software Tool</p>
+                <p>Adobe XD</p>
+                <p class="greyed-out">Fun score</p>
+                <p>6/10</p>
+                <p class="greyed-out">Difficulty score</p>
+                <p>4/10</p>
+              </div>
+            </div>
+          </section>
+          <section class="carousel-item-container" id="carousel-container-3">
+            <h1 class="project-title">Pfandflaschenautomat</h1>
+            <img
+              src="img/pfandflaschenautomat_projekt.png"
+              alt="Pfandflaschenautomat Projekt Image"
+            />
+            <div class="project-description">
+              <div class="main-view">
+                <img
+                  src="img/designgrundlagen_01/main_screen.png"
+                  alt="Main Screen of the Project"
+                />
+                <p>
+                  Als Aufgabe galt es, eine Interaction Map zu erstellen. Das
+                  ausgewählte Thema war der Prozess einer Pfandflaschenrückgabe.
+                  Dazu haben wir zunächst eine Testperson gebeten, eine
+                  Pfandflasche zurückzugeben. Diesen Prozess haben wir im Detail
+                  analysiert. Das Ergebnis dieser Analyse haben wir dann in eine
+                  interaktive iPad-App umgesetzt. In dieser App kann man
+                  zwischen verschiedenen Menüs navigieren und Ebenen filtern.
+                </p>
+                <h3>Erkenntnis Button</h3>
+                <img
+                  src="img/designgrundlagen_01/erkenntnis_button.png"
+                  alt="erkenntnis_button"
+                />
+                <p>
+                  Wichtig war es für uns, die Erkenntnisse aus unserer Analyse
+                  miteinzubauen, ohne Ästhetik und Überschaubarkeit zu
+                  verlieren. Dazu haben wir einigen Feldern Info-Buttons
+                  hinzugefügt. Klickt man auf einen Button, erscheint ein Pop-up
+                  mit der jeweiligen Erkenntnis.
+                </p>
+                <h3>Erkenntnis Pop-up</h3>
+                <img
+                  src="img/designgrundlagen_01/erkenntnis_popup.png"
+                  alt="erkenntnis_popup"
+                />
+                <p>
+                  Das Erkenntnis Pop-up besteht aus einer Skizze und einer
+                  kurzen Erklärung. Die Pop-ups können vom User geöffnet und
+                  wieder geschlossen werden. Des Weiteren gibt es auf der Ebene
+                  „Display“ einen klickbaren Prototypen, der die Anzeige des
+                  Pfandautomaten simuliert.
+                </p>
+                <h3>Lo-Fi Skizze</h3>
+                <img
+                  src="img/designgrundlagen_01/lo_fi.png"
+                  alt="Lo-Fi Skizze"
+                />
+                <p>
+                  Auf einem Whiteboard haben wir die verschiedenen Ebenen der
+                  Interaction Map festgehalten. Für die verschiedenen Ebenen
+                  haben wir unterschiedliche Post-It Farben benutzt. Die in der
+                  Feeling-Ebene mit den Farben pink und grün deutlich zu
+                  erkennen ist. Zu diesem Zeitpunkt hatte unsere Map vier
+                  Ebenen: Die Doing-, die Thinking-, die Feeling- und die
+                  Zeitebene. In der Thinking-Ebene haben wir alle möglichen
+                  Gedanken des Nutzers notiert, darunter auch fragen die man
+                  sich unterbewusst selbst stellt, wie z. B. „Wie weit lege ich
+                  jetzt die Flasche rein?“. In der Feeling-Ebene haben wir die
+                  positiven und negativen Gedanken notiert, die der Nutzer hat.
+                  Im Rewe haben wir eine Videoaufnahme vom Prozess der
+                  Pfandrückgabe gemacht, damit konnten wir die Zeiten für jeden
+                  Schritt messen und festhalten.
+                </p>
+                <h3>Mid-Fi</h3>
+                <img src="img/designgrundlagen_01/mid_fi.png" alt="Mid-Fi" />
+                <p>
+                  Im nächsten Schritt haben wir alle Post-Its auf ein Miro-Board
+                  übertragen. Außerdem haben wir die Ebenen in Kategorien und
+                  Subkategorien eingeteilt. Es entstand zum Beispiel eine
+                  technische Ebene mit mehreren Unterebenen. Die Maschine ist
+                  ein wichtiger Faktor beim Einlegen. Um diese zu verstehen
+                  haben wir sie in die Ebenen Logik, Display und Band
+                  aufgeteilt. Die Logik-Ebene der Maschine beschreibt, was die
+                  Maschine in jedem Schritt macht. In der Display-Ebene haben
+                  wir grafisch gearbeitet und für jeden Bildschirmzustand eine
+                  jeweilige Bilderschirmaufnahme hinzugefügt. Hier war auch
+                  deutlich zuerkennen, wann welcher Sensor einsetzt und wie sich
+                  dann Band in den einzelnen Zuständen verhält.
+                </p>
+                <h3>Hi-Fi / Finales Projekt</h3>
+                <h4>Startseite</h4>
+                <img
+                  src="img/designgrundlagen_01/startseite.png"
+                  alt="Startseite"
+                />
+                <p>
+                  In der finalen Version haben wir das Design der Startseite
+                  modern und schlicht gehalten. Statische Felder wie die
+                  Icon-Felder, die Schaubilder in der Ebene für den Kontext und
+                  auch die globalen Ebenen haben wir rechteckig gehalten. Die
+                  dynamischen Ebnen, welche gefiltert werden können, sind in
+                  abgerundeter Form.
+                </p>
+                <h4>Person und Kontext</h4>
+                <img
+                  src="img/designgrundlagen_01/person_und_kontext.png"
+                  alt="person_und_kontext"
+                />
+                <p>
+                  Die Ebene für die Testperson und den Kontext ist nun
+                  scrollbar. Das Schaubild vom Rewe konnte dadurch vergrößert
+                  werden. Auch die Informationen haben mehr Freiraum bekommen
+                  und können leichter erfasst werden. Die Erkenntnisse zur
+                  Positionierung des Automaten haben wir in der App weggelassen,
+                  da sie nicht aktiv mit der Pfandrückgabe verknüpft sind. Das
+                  Schaubild vom Rewe wurde vergrößert, um die Position vom
+                  Pfandautomaten und den Rewe besser zu erkennen.
+                </p>
+                <h4>Interaction Map</h4>
+                <img
+                  src="img/designgrundlagen_01/interaction-map.png"
+                  alt="interaction-map"
+                />
+                <p>
+                  Die Interaction Map hat sechs Ebenen. Neben den verschiedenen
+                  Ebenen der Testperson, gibt es noch eine technische Ebene für
+                  den Display. Diese Ebene enthält einen klickbaren Prototypen
+                  des Automaten, die dem Benutzter ermöglicht die Zustände
+                  selbst zu erleben. Wichtig waren uns, die Erkenntnisse aus
+                  unserer Analyse einzubauen, ohne die Ästhetik und
+                  Überschaubarkeit zu verlieren. Dazu haben wir den Feldern aus
+                  der Interaction Map Info-Buttons hinzugefügt. Klickt man auf
+                  einen Button, erscheint ein Pop-up mit der jeweiligen
+                  Erkenntnis. Das Erkenntnis Pop-up besteht aus einer Skizze und
+                  einer kurzen Erklärung. Die Pop-Ups können jederzeit vom User
+                  geöffnet und wieder geschlossen werden. Die Ebenen können in
+                  der Sidebar gefiltert werden. Dazu muss man auf das
+                  Filter-Icon oben rechts klicken und die jeweilige Ebene
+                  entfernen oder hinzufügen.
+                </p>
+              </div>
+              <hr class="horizontal-line"/>
+              <div class="sidebar-view">
+                <p class="greyed-out">Studenten</p>
+                <ul class="minus-symbol">
+                  <li>Selamawit Gegziabher</li>
+                  <li>Luca Ziegler</li>
+                </ul>
+                <p class="greyed-out">Betreuung</p>
+                <ul class="minus-symbol">
+                  <li>Anna Jeske</li>
+                  <li>Vanessa Stöckel</li>
+                </ul>
+                <p class="greyed-out">Software Tool</p>
+                <p>Figma</p>
+                <p class="greyed-out">Fun score</p>
+                <p>3/10</p>
+                <p class="greyed-out">Difficulty score</p>
+                <p>4/10</p>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="page-arrows">
+          <div onclick="nextItem()" class="next-arrow-container">
+            <svg class="next" viewBox="0 0 24 24">
+              <path
+                d="M8.59 16.58 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"
+              />
+            </svg>
+            <div class="background"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
