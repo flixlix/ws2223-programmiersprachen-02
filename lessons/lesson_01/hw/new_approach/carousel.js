@@ -4,6 +4,9 @@ let currentItem = 0;
 /* create constant variable and set its value to the elements that have the class name of 'carousel-item-container' */
 const carouselItems = document.getElementsByClassName("carousel-item-container");
 
+/* create constant and set its value to the elements that have the class name of 'carousel-page-indicator-container' */
+const carouselPageIndicators = document.getElementsByClassName("carousel-page-indicator-container");
+
 /* create constant variable and set its value to the amount of divs minus 1 (because indexing starts at 0, not at 1) */
 const maxIndex = carouselItems.length - 1;
 
@@ -23,6 +26,9 @@ function showItem(newIndex) {
 
             /* hide element with the index i */
             carouselItems[i].style.display = "none";
+
+            /* set page selectors as not active */
+            carouselPageIndicators[i].classList.remove('active');
         }
     }
 
@@ -31,6 +37,9 @@ function showItem(newIndex) {
 
     /* show new item */
     carouselItems[newIndex].style.display = "block";
+
+    /* set current page selector as active */
+    carouselPageIndicators[newIndex].classList.add('active');
 
     /* update current index of selected item */
     currentItem = newIndex;

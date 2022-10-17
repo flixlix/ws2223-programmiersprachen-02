@@ -109,6 +109,54 @@ h1.project-title {
   border: 1px solid rgb(var(--primary-text-color))
 }
 
+.carousel-page-indicators-container {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: 10rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: rgb(var(--card-background-color));
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
+}
+
+.carousel-page-indicator-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 2rem;
+  aspect-ratio: 1/1;
+  opacity: 0.2;
+  transition: transform 0.15s ease, opacity .5s ease;
+}
+
+.carousel-page-indicator-container:hover {
+  opacity: 0.4;
+  transform: scale(1.2);
+}
+
+.carousel-page-indicator-container:active {
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.carousel-page-indicator-container.active {
+  opacity: 0.8;
+}
+
+.carousel-page-indicator {
+  width: 1rem;
+  fill: rgb(var(--primary-text-color));
+}
+
+
 @keyframes leftToRight {
   from {
     transform: translate(-20%, 0);
@@ -128,6 +176,9 @@ h1.project-title {
 }
 
 @media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
   .page-arrows {
     display: none;
   }
