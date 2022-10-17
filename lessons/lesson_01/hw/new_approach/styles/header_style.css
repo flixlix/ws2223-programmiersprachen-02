@@ -16,7 +16,7 @@ nav ul {
   align-self: center;
   list-style: none;
   display: flex;
-  gap: 4vw;
+  gap: 3vw;
 }
 
 .theme-toggle {
@@ -28,29 +28,53 @@ nav ul {
   font-size: 2.5rem;
 }
 
+nav ul {
+  padding: 0px;
+}
+
+header a {
+  text-decoration: none;
+  color: rgb(var(--primary-text-color));
+}
+
 nav a {
   color: rgb(var(--primary-text-color));
   text-decoration: none;
   position: relative;
 }
 
-a {
+nav a.active {
+  font-weight: bold;
+  text-decoration: underline;
+  text-underline-offset: .3rem;
+  text-decoration-thickness: 2px;
+}
+
+header nav a {
   box-shadow: inset 0 0 0 0 rgb(var(--primary-text-color));
   color: rgb(var(--primary-text-color));
   padding: 0.25rem;
   border-radius: 3px;
+  padding: .5rem;
   transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   transform: scale(1);
 }
-a:hover {
+
+header nav a:hover {
   color: rgb(var(--primary-background-color));
   box-shadow: inset 200px 0 0 0 rgb(var(--primary-text-color));
   transform: scale(0.5);
 }
 
+.theme-buttom-list-item, .action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .action-button {
   cursor: pointer;
+
 }
 
 .theme-toggle {
@@ -70,7 +94,7 @@ a:hover {
   transform: scale(1);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
 
 
   header {

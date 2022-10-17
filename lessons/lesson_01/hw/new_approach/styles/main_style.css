@@ -68,7 +68,7 @@ main {
   margin: var(--spacing-outside);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   main {
     margin: var(--mobile-spacing-outside);
   }

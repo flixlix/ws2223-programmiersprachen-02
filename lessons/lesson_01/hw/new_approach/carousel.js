@@ -69,20 +69,10 @@ function previousItem() {
     showItem(currentItem);
 }
 
-
-
 function setClassNameRemoveOthers(index, newName) {
     carouselItems[index].classList.remove('right', 'left');
     carouselItems[index].classList.add(newName);
 }
-
-
-
-
-
-
-
-
 
 const bodyEl = document.getElementsByTagName('main')[0];
 

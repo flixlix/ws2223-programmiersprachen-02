@@ -175,7 +175,7 @@ h1.project-title {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1000px) {
   h1 {
     font-size: 1.5rem;
   }
@@ -193,5 +193,14 @@ h1.project-title {
 
   .horizontal-line {
     display: block;
+  }
+
+  .carousel-page-indicators-container {
+    width: 7rem;
+    height: 2.5rem;
+  }
+
+  .carousel-page-indicator-container {
+    width: 1rem;
   }
 }
