@@ -21,6 +21,7 @@
   --card-box-shadow: 1px 1px 5px 0px rgb(190, 190, 190);
   --spacing-outside: 0 7%;
   --mobile-spacing-outside: 0 3.5%;
+  --github-icon-invert-fitler: 0;
 }
 
 [data-theme="dark"] {
@@ -42,6 +43,7 @@
   --card-background-color: 23, 23, 23 /* 32, 33, 36 */;
   --card-box-shadow: 1px 1px 5px 0px rgb(12, 12, 14);
   --card-border-radius: 10px;
+  --github-icon-invert-fitler: 1;
 }
 
 html,
@@ -50,6 +52,7 @@ body {
   padding: 0px;
   font-family: "Roboto", sans-serif;
   background-color: rgb(var(--secondary-background-color));
+  z-index: -30;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 100%;

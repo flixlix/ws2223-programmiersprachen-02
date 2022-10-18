@@ -7,9 +7,9 @@
     <title>About Me</title>
     <link rel="stylesheet" href="styles/main_style.css" />
     <link rel="stylesheet" href="styles/header_style.css" />
-    <link rel="stylesheet" href="styles/carousel_style.css" />
+    <link rel="stylesheet" href="styles/about_me_style.css" />
+    <script defer src="copytext.js"></script>
     <script defer src="themeButton.js"></script>
-    <script defer src="carousel.js"></script>
   </head>
   <body>
     <header>
@@ -34,5 +34,117 @@
         </ul>
       </nav>
     </header>
+    <main>
+      <div class="parallax" id="parallax01">
+        <video
+          autoplay
+          muted
+          loop
+          class="parallax-video"
+          id="schwaebisch-gmuend-video"
+        >
+          <source
+            src="background_videos/schwaebisch_gmuend_video.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      <div class="heading">
+        <p class="introduction">Hallo, mein Name ist</p>
+        <h1 class="name">Luca Félix</h1>
+      </div>
+      <div class="short_description parallax-text">
+        <div class="identity">
+          <ul>
+            <li>Last name:</li>
+            <li>First name:</li>
+            <li>Birthdate:</li>
+            <li>Origin:</li>
+            <li>Profession:</li>
+          </ul>
+        </div>
+        <div class="state">
+          <ul>
+            <li>Ziegler Félix</li>
+            <li>Luca Mário</li>
+            <li>30.07.2002</li>
+            <li>Lisbon, Portugal</li>
+            <li>Student</li>
+          </ul>
+        </div>
+      </div>
+      <div class="parallax" id="parallax03">
+        <video autoplay muted loop class="parallax-video">
+          <source
+            src="background_videos/monsanto_lisboa.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      <p class="parallax-text">
+        Ich bin in Lissabon, Portugal geboren.Bis zur dritten Klasse besuchte
+        ich eine portugiesische Schule. Von der 4. Klasse bis zum Abitur
+        besuchte ich die "Deutsche Schule Lissabon". Nach meinem Abitur habe ich
+        "Elektro- und Informationstechnik" für 3 Semester an der "Technische
+        Hochschule Mittelhessen" in Gießen, Deutschland studiert. Im Moment
+        studiere "Internet of Things" an der Hochschule für Gestaltung in
+        Schwäbisch Gmünd, Deutschland.
+      </p>
+      <div class="parallax" id="parallax03">
+        <video autoplay muted loop class="parallax-video">
+          <source
+            src="background_videos/ericeira_praia_da_ursa.mp4"
+            type="video/mp4"
+          />
+        </video>
+      </div>
+      <p class="parallax-text">
+        Ich war schon immer ein sehr „technikinteressierter“ Mensch. Zwei Jahre
+        lang war ich auf Film und Fotografie fokusiert (alle Videos und Fotos im
+        Hintergrund habe ich Sommer '22 mit meiner Drohne gefilmt). In den
+        folgenden zwei Jahren war mein größtes Hobby das DJing. Meine derzeit
+        größtes Hobby ist die Heimautomation, da sie Strom und Programmierung
+        kombiniert.
+      </p>
+      <div class="parallax" id="parallax-img-01"></div>
+      <p class="parallax-text">
+        Im Allgemeinen bin ich ein sehr aktiver Mensch. Ich liebe es Fahrrad zu
+        fahren und dabei neue Trails und Städte zu erkunden.
+        <br />
+        Ich bin ebenfalls ein großer Fan von Kajakfahren, was in Portugal
+        einfacher zu machen ist als in Deutschland.
+      </p>
+      <div class="parallax" id="parallax-img-02">
+        <div class="contact-container">
+          <h2 class="contact-text">Contact me</h2>
+          <div class="badges-container">
+            <a href="https://github.com/flixlix" target="_blank">
+              <div class="badge" id="github-badge">
+                <img src="img/github.png" alt="Github Badge" />
+              </div>
+            </a>
+            <a href="mailto:luca.ziegler.felix@gmail.com" onClick="copyText()">
+              <div class="badge" id="gmail-badge">
+                <img src="img/gmail.png" alt="Gmail Badge" />
+              </div>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/luca-f%C3%A9lix-36a0931b4/"
+              target="_blank"
+            >
+              <div class="badge" id="linkedin-badge">
+                <img src="img/linkedin.png" alt="LinkedIn Badge" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="info-popup" id="copied-text-confirmation">
+        <span class="closebtn" onclick="this.parentElement.style.opacity='0';"
+          >&times;</span
+        >
+        <b>Info!</b> Copied "luca.ziegler.felix@gmail.com" to the clipboard
+      </div>
+    </main>
   </body>
 </html>
