@@ -55,7 +55,7 @@ nav a {
   position: relative;
 }
 
-nav a.active {
+a.active {
   font-weight: bold;
   text-decoration: underline;
   text-underline-offset: .3rem;
