@@ -8,20 +8,36 @@
     <link rel="stylesheet" href="styles/main_style.css" />
     <link rel="stylesheet" href="styles/header_style.css" />
     <link rel="stylesheet" href="styles/carousel_style.css" />
+    <link rel="stylesheet" href="styles/sidebar_style.css" />
     <script defer src="themeButton.js"></script>
     <script defer src="carousel.js"></script>
+    <script defer src="sidebar.js"></script>
   </head>
   <body>
+    <div class="sidebar" id="sidebar">
+      <ul>
+        <li>
+        <a class="active" href="index.html">Porfolio</a>
+        </li>
+        <li class="flex-center">
+          <hr/>
+        </li>
+        <li>
+          <a href="about_me.html">About Me</a>
+        </li>
+      </ul>
+    </div>
     <header>
       <div class="logo-container">
         <a href="index.html"> Luca Félix</a>
       </div>
+
       <nav>
-        <ul>
-          <li>
+        <ul class="desktop-nav">
+          <li class="nav-link">
             <a class="active" href="index.html">Porfolio</a>
           </li>
-          <li>
+          <li class="nav-link">
             <a href="about_me.html">About Me</a>
           </li>
           <li class="theme-buttom-list-item">
@@ -33,10 +49,20 @@
               </svg>
             </div>
           </li>
+          <li>
+            <div
+              onclick="toggleSidebar()"
+              class="mobile-nav-toggle-button-container"
+            >
+              <svg class="mobile-nav-toggle-button" viewBox="0 0 24 24">
+                <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z" />
+              </svg>
+            </div>
+          </li>
         </ul>
       </nav>
     </header>
-    <main>
+    <main id="main">
       <div class="carousel-container">
         <div class="page-arrows">
           <div onclick="previousItem()" class="previous-arrow-container">
