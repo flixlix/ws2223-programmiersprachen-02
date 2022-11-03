@@ -1,0 +1,33 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.text-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+input {
+  width: 50%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.checked {
+  color: green;
+}
+
+.unchecked {
+  color: red;
+}
+
+#button-edit-mode-icon {
+  width: 20px;
+  height: 20px;
+}

@@ -211,18 +211,75 @@ async function fetchDataTodos() {
         )
 
 
-        console.log("completed todos", completedTodos, "completed todos");
+        /* console.log("completed todos", completedTodos, "completed todos");
         console.log("uncompleted todos", uncompletedTodos, "uncompleted todos");
         console.log("Todos of user id 4", todosUserFour, "Todos of user id 4");
         console.log("Completed Todos of user id 3", completedTodosUserThreeVariantOne, "Completed Todos of user id 3");
-        console.log("Amount of completed todos",  completedTodos.length);
-        console.log("Amount of uncompleted todos",  uncompletedTodos.length);
-        console.log("Amount of todos assigned to userId 4",  todosUserFour.length);
-        console.log("Amount of completed todos assigned to userId 3",  completedTodosUserThreeVariantOne.length);
+        console.log("Amount of completed todos", completedTodos.length);
+        console.log("Amount of uncompleted todos", uncompletedTodos.length);
+        console.log("Amount of todos assigned to userId 4", todosUserFour.length);
+        console.log("Amount of completed todos assigned to userId 3", completedTodosUserThreeVariantOne.length); */
     }
     catch {
         console.log(error);
     }
 }
 
-fetchDataTodos();
+/* fetchDataTodos(); */
+
+async function fetchLocalData() {
+    try {
+        const response = await axios.get('http://127.0.0.1:5555/lessons/lesson_02/todos.json');
+        /* console.log(response.data); */
+        const todos = response.data;
+
+
+        const completedTodosWithMap = todos.map((todo) => {
+            if(todo.completed) return todo
+        }
+        );
+        /* create array of todos that are completed */
+        const completedTodos = todos.filter((todo) =>
+            todo.completed
+        );
+
+        /* create array of todos that are not completed */
+        const uncompletedTodos = todos.filter((todo) =>
+            !todo.completed
+        );
+
+        /* create array of todos belonging to userId number 4 */
+        const todosUserFour = todos.filter((todo) =>
+            todo.userId === 4
+        )
+
+        /* create array of completed todos belonging to userId 3 */
+        /* there are two variants, both variants return the same array */
+
+        /* this variant filters out the array that already filtered all completed todos */
+        const completedTodosUserFourVariantOne = completedTodos.filter((todo) =>
+            todo.userId === 4
+        )
+        /* this variant filters out the original array and uses two conditions */
+        const completedTodosUserFourVariantTwo = todos.filter((todo) =>
+            todo.userId === 4 && todo.completed
+        )
+        console.log("completed todos", completedTodosWithMap, "completed todos");
+        console.log("completed todos", completedTodos, "completed todos");
+        console.log("uncompleted todos", uncompletedTodos, "uncompleted todos");
+        console.log("Todos of user id 4", todosUserFour, "Todos of user id 4");
+        console.log("Completed Todos of user id 3", completedTodosUserFourVariantOne, "Completed Todos of user id 3");
+        console.log("Amount of completed todos", completedTodos.length);
+        console.log("Amount of uncompleted todos", uncompletedTodos.length);
+        console.log("Amount of todos assigned to userId 4", todosUserFour.length);
+        console.log("Amount of completed todos assigned to userId 4", completedTodosUserFourVariantTwo.length);
+    }
+    catch (error) {
+        console.log(error)
+    }
+    finally {
+        console.log("Task completed")
+    }
+}
+
+fetchLocalData();

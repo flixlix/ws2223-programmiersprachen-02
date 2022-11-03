@@ -1,0 +1,18 @@
+.combo,
+.combo_reversed {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.combo_reversed {
+  flex-direction: row-reverse;
+}
+
+img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: cover;
+}

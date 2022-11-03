@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/flixlix/ws2223-programmiersprachen-02#readme",
   "dependencies": {
-    "create-react-app": "^5.0.1"
+    "@carbon/react": "^1.15.0",
+    "create-react-app": "^1.2.1"
+  },
+  "devDependencies": {
+    "sass": "^1.55.0"
   }
 }
