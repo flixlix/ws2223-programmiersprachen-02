@@ -11,6 +11,7 @@ function App() {
   let [result, setResult] = useState(null);
   let [choice, setChoice] = useState(null);
   let [queries, setQueries] = React.useState("");
+
   let [leftQuery, setLeftQuery] = React.useState("");
   let [rightQuery, setRightQuery] = React.useState("");
 
@@ -19,7 +20,6 @@ function App() {
       .get("./data.json")
       .then((response) => {
         setQueries(response.data);
-        console.log(queries);
         setLoading(false);
       })
       .catch((error) => {
