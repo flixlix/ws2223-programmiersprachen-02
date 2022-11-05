@@ -16,8 +16,6 @@ export default function ActionButton({ buttonName, duetArray }) {
         console.log("wrong");
       }
     }
-    console.log(duetArray[0].searches);
-    console.log(duetArray[1].searches);
   }
   return (
     <div>

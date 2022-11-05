@@ -1,38 +1,42 @@
 import React from "react";
 import "./ImageSide.css";
 import ActionButton from "../ActionButton/ActionButton";
-import axios from "axios";
 
-export default function ImageSide({ source, side, name, searches, duetArray }) {
+export default function ImageSide({
+  source,
+  side,
+  name,
+  searches,
+  index,
+  duetArray,
+}) {
   return (
     <div className={"image-side-container " + side}>
       <div
         className="image-background"
         style={{
-          backgroundImage: `url(${source})`,
+          backgroundImage: `url(${duetArray[index].src})`,
         }}
       ></div>
       <div className="description-container">
-        <h2>{name ?? "test"}</h2>
+        <h2>{duetArray[index].name ?? "test"}</h2>
         <h3>has</h3>
         {side === "left" && (
           <h3>
             <span className="num-of-searches">
-              {" " + Intl.NumberFormat("en-US").format(searches) ?? "null"}
+              {" " +
+                Intl.NumberFormat("en-US").format(duetArray[index].searches) ??
+                "null"}
             </span>
           </h3>
         )}
-        {side === "right" && (
-          <ActionButton buttonName="higher" duetArray={duetArray} />
-        )}
-        {side === "right" && (
-          <ActionButton buttonName="lower" duetArray={duetArray} />
-        )}
+        {side === "right" && <ActionButton buttonName="higher" />}
+        {side === "right" && <ActionButton buttonName="lower" />}
         <h3>
           {side === "right" ? (
             <p>
               searches than{" "}
-              <span className="opponent-name">Cristiano Ronaldo</span>
+              <span className="opponent-name">{duetArray[1 - index].name}</span>
             </p>
           ) : (
             "average monthly searches"

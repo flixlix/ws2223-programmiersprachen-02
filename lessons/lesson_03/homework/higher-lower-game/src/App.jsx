@@ -1,99 +1,45 @@
-import { useState } from "react";
-import axios from "axios";
-import React from "react";
-import ImageSide from "./ImageSide/ImageSide";
-import CustomHeading from "./CustomHeading/CustomHeading";
-import Result from "./Result/Result";
+import Game from "./Game/Game";
+
+// Importing the CSS File
 import "./App.css";
 
+// Importing the useState hook
+import { useState } from "react";
+
 function App() {
-  let [isLoading, setLoading] = useState(true);
-  let [result, setResult] = useState(null);
-  let [choice, setChoice] = useState(null);
-  let [queries, setQueries] = React.useState("");
+  // Creating a reset state, which indicates whether
+  // the game should be reset or not
+  const [reset, setReset] = useState(false);
 
-  let [leftQuery, setLeftQuery] = React.useState("");
-  let [rightQuery, setRightQuery] = React.useState("");
+  // Creating a winner state, which indicates
+  // the current winner
+  const [result, setResult] = useState("");
 
-  React.useEffect(() => {
-    axios
-      .get("./data.json")
-      .then((response) => {
-        setQueries(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
-  }, []);
+  // Sets the reset property to true
+  // which starts the chain
+  // reaction of resetting the board
+  const resetBoard = () => {
+    console.log("test");
+    setReset(true);
+  };
 
-  function handleButtonClick(choice) {
-    if (choice === "higher") {
-      setChoice("higher");
-    } else if (choice === "lower") {
-      setChoice("lower");
-    }
-    handleResult(choice);
-  }
-
-  function handleResult(choice) {
-    if (choice === "higher" && leftQuery.searches > rightQuery.searches) {
-      setResult("incorrect");
-    } else if (
-      choice === "higher" &&
-      leftQuery.searches < rightQuery.searches
-    ) {
-      setResult("correct");
-    } else if (choice === "lower" && leftQuery.searches < rightQuery.searches) {
-      setResult("incorrect");
-    } else if (choice === "lower" && leftQuery.searches > rightQuery.searches) {
-      setResult("correct");
-    }
-    setChoice(null);
-  }
-
-  function getRandomquery() {
-    const randomIndex = Math.floor(Math.random() * queries.length);
-    const randomQuery = queries[randomIndex];
-    return randomQuery;
-  }
-  leftQuery = getRandomquery();
-  rightQuery = getRandomquery();
-  if (leftQuery === rightQuery) {
-    rightQuery = getRandomquery();
-  }
-  let duetArray = [leftQuery, rightQuery];
-  if (
-    isLoading ||
-    queries.length === 0 ||
-    leftQuery === "" ||
-    leftQuery === undefined ||
-    rightQuery === "" ||
-    rightQuery === undefined
-  ) {
-    return <div className="App">Loading...</div>;
-  }
   return (
-    <div className="react-root">
-      <CustomHeading />
-      <Result state={result} />
-      <ImageSide
-        side="left"
-        name={leftQuery.name}
-        source={leftQuery.src}
-        searches={leftQuery.searches}
-        duetArray={duetArray}
+    <div className="App">
+      {/* Custom made board component comprising of
+			the tic-tac-toe board */}
+      <Game
+        reset={reset}
+        setReset={setReset}
+        result={result}
+        setResult={setResult}
       />
-      <ImageSide
-        side="right"
-        name={rightQuery.name}
-        source={rightQuery.src}
-        searches={rightQuery.searches}
-        duetArray={duetArray}
-        handleHigherButtonClick={handleButtonClick("higher")}
-        handleLowerButtonClick={handleButtonClick("lower")}
-      />
+      {/* Shrinks the popup when there is no winner */}
+      <div className={`result ${result !== "" ? "" : "shrink"}`}>
+        {/* Display the current winner */}
+        <div className="result-text">{result}</div>
+        {/* Button used to reset the board */}
+        <button onClick={() => resetBoard()}>Reset Board</button>
+      </div>
     </div>
   );
 }
