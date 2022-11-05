@@ -4,7 +4,7 @@
 // v3 of the blogger API, and using an API key to authenticate.
 const blogger = google.blogger({
     version: 'v3',
-    auth: 'AIzaSyAZ4_qG-D8s3HKveQdfqzRfUjh-2Y6ldX8'
+    auth: ''
 });
  */
 const SerpApi = require('google-search-results-nodejs');
