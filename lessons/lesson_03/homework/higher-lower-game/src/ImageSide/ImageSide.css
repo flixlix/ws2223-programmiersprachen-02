@@ -53,9 +53,13 @@
   font-size: 18px;
 }
 
-.description-container h3 span {
+.description-container h3 .num-of-searches {
   font-weight: 700;
   font-size: 8.5vh;
+}
+
+.opponent-name {
+  font-weight: bold;
 }
 
 .description-container h4 {
