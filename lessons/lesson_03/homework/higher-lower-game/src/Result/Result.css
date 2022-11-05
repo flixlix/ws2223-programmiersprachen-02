@@ -1,0 +1,47 @@
+.result-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.result {
+  width: 6rem;
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border-radius: 50%;
+
+  opacity: 1;
+  z-index: 2;
+}
+
+.correct,
+.incorrect {
+  animation: flash ease 1s 1;
+}
+
+.correct {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.incorrect {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+/* animate by getting bigger and smaller */
+@keyframes flash {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

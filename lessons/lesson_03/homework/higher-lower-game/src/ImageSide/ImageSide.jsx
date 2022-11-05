@@ -2,14 +2,7 @@ import React from "react";
 import "./ImageSide.css";
 import ActionButton from "../ActionButton/ActionButton";
 
-export default function ImageSide({
-  source,
-  side,
-  name,
-  searches,
-  index,
-  duetArray,
-}) {
+export default function ImageSide({ side, index, duetArray, changeChoice }) {
   return (
     <div className={"image-side-container " + side}>
       <div
@@ -30,8 +23,12 @@ export default function ImageSide({
             </span>
           </h3>
         )}
-        {side === "right" && <ActionButton buttonName="higher" />}
-        {side === "right" && <ActionButton buttonName="lower" />}
+        {side === "right" && (
+          <ActionButton buttonName="higher" changeChoice={changeChoice} />
+        )}
+        {side === "right" && (
+          <ActionButton buttonName="lower" changeChoice={changeChoice} />
+        )}
         <h3>
           {side === "right" ? (
             <p>

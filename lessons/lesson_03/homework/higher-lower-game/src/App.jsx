@@ -13,7 +13,6 @@ function App() {
 
   // Creating a winner state, which indicates
   // the current winner
-  const [result, setResult] = useState("");
 
   // Sets the reset property to true
   // which starts the chain
@@ -27,16 +26,9 @@ function App() {
     <div className="App">
       {/* Custom made board component comprising of
 			the tic-tac-toe board */}
-      <Game
-        reset={reset}
-        setReset={setReset}
-        result={result}
-        setResult={setResult}
-      />
+      <Game reset={reset} setReset={setReset} />
       {/* Shrinks the popup when there is no winner */}
-      <div className={`result ${result !== "" ? "" : "shrink"}`}>
-        {/* Display the current winner */}
-        <div className="result-text">{result}</div>
+      <div>
         {/* Button used to reset the board */}
         <button onClick={() => resetBoard()}>Reset Board</button>
       </div>

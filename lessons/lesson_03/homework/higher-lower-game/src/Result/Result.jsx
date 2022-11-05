@@ -1,12 +1,16 @@
 import React from "react";
+import "./Result.css";
 
 export default function Result({ state }) {
   return (
-    <div>
-      {state ? (
-        <div className="wrong-box">Wrong</div>
+    <div className="result-container">
+      {state === "correct" ? (
+        <div className="result correct"></div>
+      ) : state === "incorrect" ? (
+        <div className="result incorrect"></div>
       ) : (
-        <div className="correct-box">Correct</div>
+        /* if state is "" */
+        <div className="result"></div>
       )}
     </div>
   );
