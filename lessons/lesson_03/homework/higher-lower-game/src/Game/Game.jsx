@@ -3,19 +3,20 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ImageSide from "../ImageSide/ImageSide";
 import Result from "../Result/Result";
+import Scoreboard from "../Scoreboard/Scoreboard";
+import { Loading } from "@carbon/react";
 
-export default function Game({ reset, setReset }) {
+export default function Game() {
+  const [highscore, setHighscore] = useState(0);
   const [round, setRound] = useState(0);
   const [response, setResponse] = useState([]);
   const [choice, setChoice] = useState("");
   const [result, setResult] = useState(false);
+  const [wait, setWait] = useState(false);
   const [duetArray, setDuetArray] = useState([
     { src: "", name: "" },
     { src: "", name: "" },
   ]);
-  function changeChoice(choice) {
-    console.log(choice);
-  }
   const [isLoading, setIsLoading] = useState(true);
   async function fetch() {
     await axios
@@ -38,34 +39,28 @@ export default function Game({ reset, setReset }) {
   }
 
   function changeChoice(buttonChoice) {
+    if (wait) {
+      return;
+    }
     setChoice(buttonChoice);
     getResult(buttonChoice);
   }
 
   function getResult(choice) {
-    console.log(duetArray);
-    console.log(choice);
     if (choice === "higher") {
       if (duetArray[0].searches < duetArray[1].searches) {
         setResult("correct");
-        startNextRound(duetArray);
       } else {
         setResult("incorrect");
       }
     } else if (choice === "lower") {
       if (duetArray[0].searches > duetArray[1].searches) {
         setResult("correct");
-        startNextRound(duetArray);
       } else {
-        setResult("incorect");
+        setResult("incorrect");
       }
     }
-    /* after 1 second, set result to "" */
-    setTimeout(() => {
-      setResult("");
-    }, 1000);
   }
-
   function startNextRound(duetArray) {
     duetArray.shift();
     let newItem = getRandomItem(response);
@@ -74,6 +69,11 @@ export default function Game({ reset, setReset }) {
     }
     duetArray.push(newItem);
     setRound(round + 1);
+  }
+
+  function restartGame() {
+    setRound(0);
+    getDuet(response);
   }
 
   function getDuet(response) {
@@ -88,12 +88,33 @@ export default function Game({ reset, setReset }) {
     setDuetArray(duet);
   }
 
+  useEffect(() => {
+    setWait(true);
+    /* perform actions after one second */
+    setTimeout(() => {
+      if (result === "correct") {
+        startNextRound(duetArray);
+      } else if (result === "incorrect") {
+        restartGame();
+      }
+      setResult("");
+      setWait(false);
+    }, 1000);
+  }, [result]);
+
+  useEffect(() => {
+    if (round > highscore) {
+      setHighscore(round);
+    }
+  }, [round]);
+
   return (
     <div>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         <div className="game-container">
+          <Scoreboard score={round} highscore={highscore} />
           <Result state={result} />
           <ImageSide
             side="left"
