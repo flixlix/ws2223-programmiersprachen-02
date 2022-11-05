@@ -1,9 +1,16 @@
 import React from "react";
 import "./ImageSide.css";
 import ActionButton from "../ActionButton/ActionButton";
-import axios from "axios";
 
-export default function ImageSide({ source, side, name, searches, duetArray }) {
+export default function ImageSide({
+  source,
+  side,
+  name,
+  searches,
+  duetArray,
+  handleHigherButtonClick,
+  handleLowerButtonClick,
+}) {
   return (
     <div className={"image-side-container " + side}>
       <div
@@ -23,10 +30,18 @@ export default function ImageSide({ source, side, name, searches, duetArray }) {
           </h3>
         )}
         {side === "right" && (
-          <ActionButton buttonName="higher" duetArray={duetArray} />
+          <ActionButton
+            buttonName="higher"
+            duetArray={duetArray}
+            handleButtonClick={handleHigherButtonClick}
+          />
         )}
         {side === "right" && (
-          <ActionButton buttonName="lower" duetArray={duetArray} />
+          <ActionButton
+            buttonName="lower"
+            duetArray={duetArray}
+            handleButtonClick={handleLowerButtonClick}
+          />
         )}
         <h3>
           {side === "right" ? (
