@@ -1,0 +1,103 @@
+.popup-button {
+  border: none;
+  width: 2.5rem;
+  background: none;
+  position: absolute;
+  fill: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  margin: 1.5rem 2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.close-button {
+  margin: 1.5rem;
+  top: 0;
+  right: 0;
+}
+
+.info-button {
+  bottom: 0;
+  left: 0;
+}
+
+.popup-button:hover {
+  fill: rgba(255, 255, 255, 1);
+}
+
+.info-popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* width: 85%; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: start;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  backdrop-filter: blur(20rem);
+  border-radius: 1rem;
+  z-index: 3;
+}
+
+/* animation zoom in from the middle */
+.info-popup-container {
+  animation: zoom-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.info-popup {
+  display: flex;
+  padding: 1.5rem 5%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.info-popup-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+span.incorrect-text {
+  color: rgb(255, 85, 85);
+  font-weight: bold;
+}
+
+span.correct-text {
+  color: rgb(85, 255, 85);
+  font-weight: bold;
+}
+
+button.github {
+  background-color: #24292e;
+  color: white;
+  border: none;
+  border-radius: 50rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button.github:hover {
+  background-color: #333;
+}
+
+button.github:active {
+  background-color: #24292e;
+}
+
+@keyframes zoom-in {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

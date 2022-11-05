@@ -1,0 +1,50 @@
+.result-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.result {
+  width: 6rem;
+  aspect-ratio: 1/1;
+  background-color: #ffffff00;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.correct,
+.incorrect {
+  animation: flash ease 1s 1;
+}
+
+.correct {
+  background-color: #78fecf;
+}
+
+.incorrect {
+  background-color: #e85f5c;
+}
+
+.correct .result-icon {
+  transform: translate(25%, 50%);
+}
+
+.result-icon {
+  height: 50%;
+  transform: translate(50%, 50%);
+}
+
+/* animate by getting bigger and smaller */
+@keyframes flash {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
