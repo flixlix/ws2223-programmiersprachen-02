@@ -15,12 +15,10 @@ export default function ImageSide({ side, index, duetArray, changeChoice }) {
         <h2>{duetArray[index].name ?? "test"}</h2>
         <h3>has</h3>
         {side === "left" && (
-          <h3>
-            <span className="num-of-searches">
-              {" " +
-                Intl.NumberFormat("en-US").format(duetArray[index].searches) ??
-                "null"}
-            </span>
+          <h3 className="num-of-searches">
+            {" " +
+              Intl.NumberFormat("en-US").format(duetArray[index].searches) ??
+              "null"}
           </h3>
         )}
         {side === "right" && (

@@ -7,4 +7,11 @@ h1 {
   color: white;
   padding: 1rem 2rem;
   z-index: 1;
+  width: 80%;
+  font-size: calc(18px + (32 - 18) * (100vw - 360px) / (1200 - 360));
+  /* min font-size: 18px */
+  /* max font-size: 32px */
+  /* min vw: 360px */
+  /* max vw: 1200px */
+  max-width: 500px;
 }

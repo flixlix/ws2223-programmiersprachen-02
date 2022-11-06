@@ -11,6 +11,7 @@ import "./Game.css";
 /* game logic and game display */
 
 export default function Game() {
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [highscore, setHighscore] = useState(0);
   const [round, setRound] = useState(0);
@@ -57,7 +58,12 @@ export default function Game() {
 
       /* run if there was an error fetching the data */
       .catch((error) => {
-        console.log(error);
+        /* after x seconds */
+        setTimeout(() => {
+          /* set error state to error given */
+          setError(error);
+          console.error("This is the error: ", error);
+        }, loadingTime * 1000 /* multiply loading time by 1000 to get millis */);
       });
   }
 
@@ -207,7 +213,7 @@ export default function Game() {
   );
 
   return (
-    <div>
+    <div className="game-container">
       {/* display loading animation */}
       {isLoading ? (
         <ProgressBar eta={loadingTime} />
@@ -216,19 +222,35 @@ export default function Game() {
           <Scoreboard score={round} highscore={highscore} />
           {/* display if guess was correct or not */}
           <Result state={result} />
-          <ImageSide
-            side="left"
-            index={0}
-            duetArray={duetArray}
-            changeChoice={changeChoice}
-          />
-          <ImageSide
-            side="right"
-            index={1}
-            duetArray={duetArray}
-            changeChoice={changeChoice}
-          />
+          <div className="duet-container">
+            {/* display left topic */}
+            <ImageSide
+              side="left"
+              index={0}
+              duetArray={duetArray}
+              changeChoice={changeChoice}
+            />
+            {/* display right topic */}
+            <ImageSide
+              side="right"
+              index={1}
+              duetArray={duetArray}
+              changeChoice={changeChoice}
+            />
+          </div>
           <InfoPopup />
+        </div>
+      )}
+      {/* if there is an error */}
+      {error && (
+        <div className="error">
+          <p className="error-warning-text">⚠️ Something went wrong ⚠️</p>
+          <span className="error-message">
+            {error.response.status} {"-"} {error.response.statusText} {"("}
+            {error.config.url}
+            {")"}
+          </span>
+          <div className="error-stack">{error.stack}</div>
         </div>
       )}
     </div>

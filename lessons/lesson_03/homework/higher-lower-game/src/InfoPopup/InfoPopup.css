@@ -94,6 +94,14 @@ button.github:active {
   background-color: #24292e;
 }
 
+/* make info icon smaller on smaller screens */
+@media (max-width: 600px) {
+  .info-button {
+    width: 2rem;
+    margin: 1rem 1.5rem;
+  }
+}
+
 @keyframes zoom-in {
   0% {
     opacity: 0;
@@ -102,5 +110,12 @@ button.github:active {
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* occupy 80% width on small screens */
+@media (max-width: 600px) {
+  .info-popup-container {
+    width: 80%;
   }
 }

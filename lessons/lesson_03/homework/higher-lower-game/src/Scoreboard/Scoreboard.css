@@ -32,3 +32,16 @@
   font-size: 1.2rem;
   font-weight: normal;
 }
+
+/* make font sizes smaller on smaller screens */
+@media (max-width: 600px) {
+  .scoreboard-highscore-container {
+    margin: 1rem 2rem;
+  }
+  .board-value {
+    font-size: 1.5rem;
+  }
+  .board-heading {
+    font-size: 0.8rem;
+  }
+}
