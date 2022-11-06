@@ -53,6 +53,10 @@
   justify-content: space-between;
 }
 
+.info-popup-body h2 {
+  margin: 0;
+}
+
 .info-popup-footer {
   display: flex;
   flex-direction: row;
