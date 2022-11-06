@@ -58,7 +58,7 @@ export default function InfoPopup() {
               <p>A Project made by: Luca Ziegler</p>
               {/* button sending to github */}
               <a
-                href="https://github.com/flixlix/ws2223-programmiersprachen-02/tree/new-approach/lessons/lesson_03/homework/higher-lower-game"
+                href="https://github.com/flixlix/ws2223-programmiersprachen-02/tree/main/lessons/lesson_03/homework/higher-lower-game"
                 target="_blank"
                 rel="noreferrer"
               >
