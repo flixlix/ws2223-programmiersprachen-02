@@ -40,9 +40,8 @@
   z-index: 3;
 }
 
-/* animation zoom in from the middle */
 .info-popup-container {
-  animation: zoom-in 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: zoom-in 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .info-popup {

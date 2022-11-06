@@ -1,0 +1,41 @@
+body {
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  display: flex;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.15);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 1rem;
+  width: 500px;
+}
+
+.progress-value {
+  /* animation of progress fast at the start and slow at the end */
+  animation: load 3s cubic-bezier(0.17, 0.67, 0.35, 0.93) normal forwards;
+  /* rounded corners */
+  border-radius: 100px;
+  /* background linear gradient between green and red */
+  background: linear-gradient(to right, #f44336 0px, #4caf50 500px);
+  height: 0.5rem;
+  width: 0;
+}
+
+@keyframes load {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
