@@ -1,3 +1,8 @@
+/* 
+  Styling for the Game component
+*/
+
+/* Duet Container */
 .duet-container {
   display: flex;
   flex-direction: row;
@@ -19,6 +24,7 @@
   }
 }
 
+/* Error styling */
 .error {
   display: flex;
   flex-direction: column;
@@ -28,6 +34,14 @@
   animation: slide-up 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .error-message {
   color: red;
   display: block;
@@ -52,13 +66,4 @@
   flex-wrap: wrap;
   overflow: auto;
   transition: transform 2s ease-in-out;
-}
-
-@keyframes slide-up {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
