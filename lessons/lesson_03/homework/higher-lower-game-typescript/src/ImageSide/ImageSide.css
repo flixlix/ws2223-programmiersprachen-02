@@ -1,0 +1,91 @@
+.image-side-container {
+  position: relative;
+  width: 50vw;
+  height: 100vh;
+}
+
+.image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.5);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.side-image {
+  width: 50%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.description-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.description-container h2 {
+  color: white;
+  font-size: 3rem;
+  font-size: 6vh;
+  font-size: 3rem;
+  margin: 0;
+  padding: 0;
+}
+
+.description-container h3 {
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.description-container h3.num-of-searches {
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  font-size: 5rem;
+}
+
+.opponent-name {
+  font-weight: bold;
+}
+
+.description-container h4 {
+  font-weight: 400;
+}
+
+/* make font sizes smaller on small screens */
+@media (max-width: 600px) {
+  .description-container h2 {
+    font-size: 2rem;
+  }
+
+  .description-container h3 {
+    font-size: 0.8rem;
+  }
+
+  .description-container h3.num-of-searches {
+    font-size: 3rem;
+  }
+}
