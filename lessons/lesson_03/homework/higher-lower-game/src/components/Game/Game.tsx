@@ -11,13 +11,20 @@ import "./Game.css";
 /* game logic and game display */
 
 export default function Game() {
-  const [error, setError] = useState("");
+  const [errorState, setErrorState] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState({
+    response: { data: {}, status: 0, statusText: "" },
+    request: {},
+    message: "",
+    stack: "",
+    config: { url: "", method: "", data: "", headers: {} },
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [highscore, setHighscore] = useState(0);
   const [round, setRound] = useState(0);
   const [response, setResponse] = useState([]);
   const [choice, setChoice] = useState("");
-  const [result, setResult] = useState(false);
+  const [result, setResult] = useState("false");
   const [wait, setWait] = useState(false);
 
   /* array with both objects displayed, first object is displayed on the left side */
@@ -30,7 +37,7 @@ export default function Game() {
   let loadingTime = 4;
 
   /* fetch data.json containing all contestants */
-  async function fetch() {
+  async function fetch(): Promise<string> {
     await axios
       .get("./data.json", {
         onDownloadProgress: (progressEvent) => {
@@ -50,6 +57,7 @@ export default function Game() {
         setTimeout(() => {
           /* set isLoading state to false */
           setIsLoading(false);
+          return response.data;
         }, loadingTime * 1000 /* multiply loading time by 1000 to get millis */);
 
         /* create duet from two random contestants */
@@ -60,11 +68,14 @@ export default function Game() {
       .catch((error) => {
         /* after x seconds */
         setTimeout(() => {
+          setErrorState(true);
           /* set error state to error given */
-          setError(error);
+          setErrorMessage(error);
           console.error("This is the error: ", error);
+          return error;
         }, loadingTime * 1000 /* multiply loading time by 1000 to get millis */);
       });
+    return "done";
   }
 
   /* run fetch function after first render */
@@ -152,7 +163,7 @@ export default function Game() {
   /* get two random items from response state */
   function getDuet(response) {
     /* create new empty array of duet */
-    let duet = [];
+    let duet: { name: string; src: string; searches: number }[] = [];
 
     /* create new item in array out of one of the contestants  */
     duet.push(getRandomItem(response));
@@ -242,15 +253,16 @@ export default function Game() {
         </div>
       )}
       {/* if there is an error */}
-      {error && (
+      {errorState && (
         <div className="error">
           <p className="error-warning-text">⚠️ Something went wrong ⚠️</p>
           <span className="error-message">
-            {error.response.status} {"-"} {error.response.statusText} {"("}
-            {error.config.url}
+            {errorMessage.response.status} {"-"}{" "}
+            {errorMessage.response.statusText} {"("}
+            {errorMessage.config.url}
             {")"}
           </span>
-          <div className="error-stack">{error.stack}</div>
+          <div className="error-stack">{errorMessage.stack}</div>
         </div>
       )}
     </div>

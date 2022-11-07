@@ -1,7 +1,7 @@
-import Game from "./Game/Game";
-import "./App.css";
-import CustomHeading from "./CustomHeading/CustomHeading";
 import React from "react";
+import "./App.css";
+import Game from "./components/Game/Game";
+import CustomHeading from "./components/CustomHeading/CustomHeading";
 
 function App() {
   return (
