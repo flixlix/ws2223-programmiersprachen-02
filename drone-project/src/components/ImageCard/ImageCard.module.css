@@ -1,0 +1,13 @@
+.imgCard {
+  position: relative;
+  transition: all 0.15s cubic-bezier(0.17, 0.67, 0.68, 1.29);
+}
+
+.imgCardOverlayContent {
+  position: absolute;
+  bottom: 0;
+}
+
+.imgCardContainer:hover .imgCard {
+  transform: scale(0.99);
+}

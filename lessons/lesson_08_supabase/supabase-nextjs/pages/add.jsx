@@ -4,6 +4,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 export default function add() {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
   const [todos, setTodos] = React.useState([]);
   const supabase = useSupabaseClient();
 
@@ -43,6 +44,7 @@ export default function add() {
         created_at: new Date().toISOString(),
         title: title,
         description: description,
+        checked: checked,
       },
     ]);
     if (error) {
@@ -64,6 +66,11 @@ export default function add() {
         type="text"
         placeholder="Description"
         onChange={(event) => handleOnDescriptionChange(event.target.value)}
+      />
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(event) => setChecked(event.target.checked)}
       />
       <button onClick={() => handleOnSubmit()}>Submit</button>
     </div>

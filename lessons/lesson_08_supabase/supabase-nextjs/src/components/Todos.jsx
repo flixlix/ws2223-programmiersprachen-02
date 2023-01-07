@@ -21,7 +21,7 @@ export default function Todos() {
   React.useEffect(() => {
     initTodos();
     return () => {};
-  }, []);
+  }, [todos]);
 
   async function addTodo() {
     let { data, error } = await supabase.from("todos").insert([
@@ -38,23 +38,47 @@ export default function Todos() {
     }
     setTodos(data);
   }
+
+  async function setChecked(id, status) {
+    let { data, error } = await supabase
+      .from("todos")
+      .update({ checked: !status })
+      .match({ id: id });
+    if (error) {
+      console.error(error);
+      return;
+    }
+    setTodos(data);
+  }
+
   return (
     <div>
       <h1>Todos</h1>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <h2>{todo.title}</h2>
-            <ul>
-              {/* run through object of todo  */}
-              {Object.keys(todo).map((key) => (
+        {todos
+          ? todos.map((todo) => (
+              <li key={todo.id}>
+                <h2>
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      setChecked(todo.id, todo.checked);
+                    }}
+                    checked={todo.checked}
+                  />
+                  {todo.title}
+                </h2>
+                <ul>
+                  {/* run through object of todo  */}
+                  {/* {Object.keys(todo).map((key) => (
                 <li key={key}>
-                  {key}: <b>{todo[key]}</b>
+                  {key}: <b>{todo[key].toString()}</b>
                 </li>
-              ))}
-            </ul>
-          </li>
-        ))}
+              ))} */}
+                </ul>
+              </li>
+            ))
+          : null}
       </ul>
       <Link href="/add" passHref>
         <button> Add Todo </button>
