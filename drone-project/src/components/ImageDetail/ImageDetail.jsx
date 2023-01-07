@@ -13,37 +13,21 @@ import CloseIcon from "@mui/icons-material/Close";
 /* import css */
 import style from "./ImageDetail.module.css";
 import ProfileSection from "../ProfileSection/ProfileSection";
-
+import { useRouter } from "next/router";
 
 export default function ImageDetail({ onClose, open, item, imageSrc }) {
   const supabase = useSupabaseClient();
+  const router = useRouter();
   const session = useSession();
   const [user_metadata, setUserMetadata] = React.useState({ id: "" });
-
-  async function getImgSizeFromUrl(url) {
-    /* return in MB */
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => {
-        const size = img.src.length;
-        resolve(size);
-      };
-      img.onerror = reject;
-      img.src = url;
-    });
-  }
-
-  getImgSizeFromUrl(imageSrc)
-    .then((size) => {
-      console.log(size);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
 
   /* handle chip click */
   function handleChipClick(e) {
     console.log(e.target.innerText);
+    /* don't allow spaces */
+    const query = e.target.innerText.replace(/\s/g, "+");
+    router.push(`/?urlSearchQuery=${query}`);
+    onClose();
   }
 
   async function getUserMetadata() {
@@ -60,13 +44,9 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
   React.useEffect(() => {
     getUserMetadata();
   }, []);
-  React.useEffect(() => {
-    console.log(user_metadata);
-    console.log(user_metadata.friendly_name);
-  }, [user_metadata]);
 
   return (
-    <Dialog onClose={() => onClose()} open={open} maxWidth="xl" fullWidth>
+    <Dialog onClose={() => onClose()} open={open} maxWidth="lg" fullWidth>
       <DialogTitle>
         {item.name}
         <IconButton
@@ -99,20 +79,6 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
               <ProfileSection user_metadata={user_metadata} />
             </div>
             <p>{item.description}</p>
-            <p>
-              <strong>Image Name:</strong> {item.name}
-            </p>
-            <p>
-              <strong>Image Path:</strong> {item.image_path}
-            </p>
-            <p>
-              <strong>Image Created:</strong> {item.created_at}
-            </p>
-            <p>
-              <strong>User id:</strong> {item.user_id}
-              <strong> Username:</strong>{" "}
-              {user_metadata?.username || "anonymous"}
-            </p>
           </div>
           <div id="right-side-description-container">
             <Typography variant="h6" component="h6">
@@ -126,7 +92,13 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
             <div className={style.tag_container}>
               {/* separate between elements in array with comma */}
               {item.tags.map((tag, index) => {
-                return <Chip label={tag} onClick={(e) => handleChipClick(e)} />;
+                return (
+                  <Chip
+                    key={index}
+                    label={tag}
+                    onClick={(e) => handleChipClick(e)}
+                  />
+                );
               })}
             </div>
           </div>

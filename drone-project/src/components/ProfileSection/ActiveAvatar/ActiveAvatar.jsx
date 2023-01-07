@@ -37,10 +37,6 @@ export default function ActiveAvatar({
   width,
   height,
 }) {
-  React.useEffect(() => {
-    console.log(user_metadata);
-  }, [user_metadata]);
-
   return (
     <div
       style={{

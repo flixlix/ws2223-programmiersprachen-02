@@ -1,22 +1,20 @@
-import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
+import React from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Gallery from "../src/components/Gallery/Gallery";
-import SignIn from "../src/components/SignIn/SignIn";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Header from "../src/components/Header/Header";
-import TemporaryDrawer from "../src/components/TemporaryDrawer/TemporaryDrawer";
 
 const Home = () => {
   const router = useRouter();
   const session = useSession();
   const supabase = useSupabaseClient();
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   return (
     <div id="home">
-      <Header />
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {/* <TemporaryDrawer /> */}
-      <Gallery />
+      <Gallery searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     </div>
   );
 };

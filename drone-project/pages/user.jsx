@@ -39,7 +39,6 @@ export default function user() {
     if (error) {
       console.log(error);
     }
-    console.log(data);
     setUserMetadata(data[0]);
   }
 
@@ -51,19 +50,16 @@ export default function user() {
     if (error) {
       console.log(error);
     }
-    console.log(data);
     setUserPhotos(data);
   }
 
   React.useEffect(() => {
-    console.log(user);
     if (user) {
       getUserMetadata();
     }
   }, [user]);
 
   React.useEffect(() => {
-    console.log(user_metadata);
     if (user_metadata) {
       getUserPhotos();
     }

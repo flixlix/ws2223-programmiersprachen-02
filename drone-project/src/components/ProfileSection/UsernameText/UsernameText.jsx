@@ -26,7 +26,6 @@ export default function UsernameText({ user_metadata, handleClick }) {
     >
       <Typography
         variant="subtitle1"
-        component="subtitle1"
         style={{
           cursor: "pointer",
         }}
@@ -36,7 +35,7 @@ export default function UsernameText({ user_metadata, handleClick }) {
       >
         {user_metadata.friendly_name || user_metadata.username}
       </Typography>
-      <Typography variant="caption" component="caption">
+      <Typography variant="caption">
         {numberOfSubmissions > 1 ? numberOfSubmissions + " posts" : "1 post"}
       </Typography>
     </div>
