@@ -1,23 +1,11 @@
 import LockResetIcon from "@mui/icons-material/LockReset";
-import React, { useEffect } from "react";
-import {
-  TextField,
-  Button,
-  Grid,
-  CssBaseline,
-  Paper,
-  Box,
-  Avatar,
-  Typography,
-  Link,
-  Checkbox,
-  FormControlLabel,
-  Alert,
-} from "@mui/material";
+import React from "react";
+import { Box } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import resetPasswordUser from "../../src/utils/resetPasswordUser";
+import resetPasswordUser from "../../src/utils/auth/resetPasswordUser";
 import InputForm from "../../src/components/InputForm/InputForm";
 import { useRouter } from "next/router";
+import Header from "../../src/components/Header/Header";
 
 export default function index() {
   const supabase = useSupabaseClient();
@@ -66,7 +54,16 @@ export default function index() {
   }
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Header />
       <InputForm
         icon={<LockResetIcon />}
         handleSubmit={({ event, email }) =>
@@ -82,6 +79,6 @@ export default function index() {
         emailError={userEmailError}
         errorMessage={errorMessage}
       />
-    </div>
+    </Box>
   );
 }

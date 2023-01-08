@@ -1,31 +1,15 @@
 import LockResetIcon from "@mui/icons-material/LockReset";
-import React, { useEffect } from "react";
-import {
-  TextField,
-  Button,
-  Grid,
-  CssBaseline,
-  Paper,
-  Box,
-  Avatar,
-  Typography,
-  Link,
-  Checkbox,
-  FormControlLabel,
-  Alert,
-} from "@mui/material";
+import React from "react";
+import { Box } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import resetPasswordUser from "../../src/utils/resetPasswordUser";
 import InputForm from "../../src/components/InputForm/InputForm";
 import { useRouter } from "next/router";
+import Header from "../../src/components/Header/Header";
 
-export default function index() {
+export default function newPassword() {
   const supabase = useSupabaseClient();
   const session = useSession();
   const router = useRouter();
-  const [userEmail, setUserEmail] = React.useState("");
-  const [userPassword, setUserPassword] = React.useState("");
-  const [userEmailError, setUserEmailError] = React.useState("");
   const [userPasswordError, setUserPasswordError] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [successState, setSuccessState] = React.useState(false);
@@ -58,7 +42,16 @@ export default function index() {
   }, [session]);
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Header />
       <InputForm
         icon={<LockResetIcon />}
         handleSubmit={({ event, password, passwordConfirm }) =>
@@ -76,6 +69,6 @@ export default function index() {
         passwordError={userPasswordError}
         errorMessage={errorMessage}
       />
-    </div>
+    </Box>
   );
 }

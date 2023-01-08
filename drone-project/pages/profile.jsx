@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../src/components/Header/Header";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
-import checkIfUserIsLoggedIn from "../src/utils/checkIfUserIsLoggedIn";
+import checkIfUserIsLoggedIn from "../src/utils/auth/checkIfUserIsLoggedIn";
 import {
   Box,
   Button,

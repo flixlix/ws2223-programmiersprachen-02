@@ -4,11 +4,13 @@ import uuid from "react-uuid";
 import { TextField, Stack, Button, Typography, Alert } from "@mui/material";
 import { MuiChipsInput } from "mui-chips-input";
 import { LoadingButton } from "@mui/lab";
+import { useRouter } from "next/router";
 import Header from "../src/components/Header/Header";
 
 export default function add() {
   const supabase = useSupabaseClient();
   const session = useSession();
+  const router = useRouter();
   const [file, setFile] = React.useState("");
   const [fileHelperText, setFileHelperText] = React.useState("");
   const [nameErrorText, setNameErrorText] = React.useState("");
@@ -20,6 +22,17 @@ export default function add() {
   const [description, setDescription] = React.useState("");
   const [tags, setTags] = React.useState([]);
   const [submissionState, setSubmissionState] = React.useState("");
+
+  async function redirectUnauthUser() {
+    const { data, error } = await supabase.auth.getUser();
+    if (error) {
+      router.push("/login");
+    }
+  }
+
+  React.useEffect(() => {
+    redirectUnauthUser();
+  }, []);
 
   async function handleSubmit() {
     if (!file || !name || tags.length === 0) {

@@ -1,22 +1,10 @@
-import React, { useEffect } from "react";
-import {
-  TextField,
-  Button,
-  Grid,
-  CssBaseline,
-  Paper,
-  Box,
-  Avatar,
-  Typography,
-  Link,
-  Checkbox,
-  FormControlLabel,
-  Alert,
-} from "@mui/material";
+import React from "react";
+import { Box } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import signInUser from "../../src/utils/signInUser";
+import signInUser from "../../src/utils/auth/signInUser";
 import InputForm from "../../src/components/InputForm/InputForm";
 import { useRouter } from "next/router";
+import Header from "../../src/components/Header/Header";
 
 export default function index() {
   const supabase = useSupabaseClient();
@@ -65,7 +53,9 @@ export default function index() {
       } else {
         console.log(session);
         setSuccessState(true);
-        setSuccessText("You have successfully signed in! Redirecting you to the home page...");
+        setSuccessText(
+          "You have successfully signed in! Redirecting you to the home page..."
+        );
         /* redirect user to home page */
         setTimeout(() => {
           router.push("/");
@@ -74,9 +64,17 @@ export default function index() {
     }
   }
 
-
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Header />
       <InputForm
         handleSubmit={({ event, email, password }) =>
           handleSignInSubmit({ event, email, password })
@@ -88,6 +86,6 @@ export default function index() {
         passwordError={userPasswordError}
         errorMessageText={errorMessage}
       />
-    </div>
+    </Box>
   );
 }

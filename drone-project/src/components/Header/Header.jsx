@@ -198,6 +198,11 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
       </MenuItem>
     </Menu>
   );
+
+  function handleProfileClick(e) {
+    e.preventDefault();
+    router.push("/profile");
+  }
   return (
     <Box style={{ marginBottom: "64px" }}>
       <ElevationScroll {...props}>
@@ -265,22 +270,27 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
               >
                 <AddIcon />
               </IconButton>
-              <Link href="/profile">
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  color="inherit"
-                >
-                  {session ? (
-                    <ActiveAvatar user_metadata={user_metadata} />
-                  ) : (
-                    <AccountCircle />
-                  )}
-                </IconButton>
-              </Link>
+              {session && (
+                <Link href="/profile">
+                  <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    color="inherit"
+                  >
+                    {session ? (
+                      <ActiveAvatar
+                        user_metadata={user_metadata}
+                        handleClick={(e) => handleProfileClick(e)}
+                      />
+                    ) : (
+                      <AccountCircle />
+                    )}
+                  </IconButton>
+                </Link>
+              )}
             </Box>
             <Box
               sx={{

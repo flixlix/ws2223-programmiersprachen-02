@@ -42,8 +42,8 @@ export default function ActiveAvatar({
       style={{
         cursor: "pointer",
       }}
-      onClick={() => {
-        handleClick();
+      onClick={(e) => {
+        handleClick(e);
       }}
     >
       {user_metadata === null ? (

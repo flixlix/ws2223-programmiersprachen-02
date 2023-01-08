@@ -14,9 +14,10 @@ import {
   Alert,
 } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import signUpUser from "../../src/utils/signUpUser";
+import signUpUser from "../../src/utils/auth/signUpUser";
 import InputForm from "../../src/components/InputForm/InputForm";
 import { useRouter } from "next/router";
+import Header from "../../src/components/Header/Header";
 
 export default function signUp() {
   const supabase = useSupabaseClient();
@@ -56,17 +57,25 @@ export default function signUp() {
         supabase: supabase,
         setErrorMessage: setErrorMessage,
       });
-      if(error){
+      if (error) {
         setErrorMessage(error.message);
       } else {
         setSuccessState(true);
       }
-
     }
   }
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Header />
       <InputForm
         handleSubmit={({ event, email, password }) =>
           handleSignUpSubmit({ event, email, password })
@@ -81,6 +90,6 @@ export default function signUp() {
         mainHeadingText="Sign up"
         linkText="Already have an account? Sign In"
       />
-    </div>
+    </Box>
   );
 }
