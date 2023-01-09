@@ -2,6 +2,7 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import { Chip } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -85,6 +86,13 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
   const filterOptions = (options, { inputValue }) => {
     return matchSorter(options, inputValue);
   };
+
+  const [searchOptions, setSearchOptions] = React.useState([
+    { title: "Title", id: "title", active: true },
+    { title: "Description", id: "description", active: true },
+    { title: "Tags", id: "tags", active: true },
+    { title: "Author", id: "author", active: true },
+  ]);
 
   const [user_metadata, setUserMetadata] = React.useState(null);
 
@@ -203,6 +211,18 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
     e.preventDefault();
     router.push("/profile");
   }
+
+  function handleChipClick(id) {
+    setSearchOptions(
+      searchOptions.map((option) => {
+        if (option.id === id) {
+          return { ...option, active: !option.active };
+        }
+        return option;
+      })
+    );
+  }
+
   return (
     <Box style={{ marginBottom: "64px" }}>
       <ElevationScroll {...props}>
@@ -255,6 +275,31 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
                     }}
                     inputProps={{ "aria-label": "search" }}
                   />
+                  {/* {searchOptions &&
+                    searchOptions.map((option) => (
+                      <Chip
+                        key={option.id}
+                        label={option.title}
+                        onClick={() => {
+                          handleChipClick(option.id);
+                        }}
+                        variant={option.active ? "default" : "outlined"}
+                        sx={{
+                          boxSizing: "border-box",
+                          backgroundColor: option.active
+                            ? "white"
+                            : "transparent",
+                        }}
+                        style={{
+                          "&:hover": {
+                            backgroundColor: option.active
+                              ? "white"
+                              : "rgba(0, 0, 0, 0.04)",
+                          },
+                        }}
+                        clickable
+                      />
+                    ))} */}
                 </Search>
               )}
             </Box>

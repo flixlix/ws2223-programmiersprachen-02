@@ -46,7 +46,7 @@ export default function ActiveAvatar({
         handleClick(e);
       }}
     >
-      {user_metadata === null ? (
+      {!user_metadata ? (
         <Skeleton
           variant="circular"
           width={width || 40}

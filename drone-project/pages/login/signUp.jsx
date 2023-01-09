@@ -51,17 +51,13 @@ export default function signUp() {
       /* reset error message from textfields */
       setUserEmailError("");
       setUserPasswordError("");
-      const { user, session, error } = signUpUser({
-        email: email,
-        password: password,
-        supabase: supabase,
-        setErrorMessage: setErrorMessage,
+      signUpUser({
+        supabase,
+        email,
+        password,
+        setErrorMessage,
+        setSuccessState,
       });
-      if (error) {
-        setErrorMessage(error.message);
-      } else {
-        setSuccessState(true);
-      }
     }
   }
 

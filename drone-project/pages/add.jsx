@@ -6,11 +6,13 @@ import { MuiChipsInput } from "mui-chips-input";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
 import Header from "../src/components/Header/Header";
+import redirectUnauthUser from "../src/utils/auth/redirecting/redirectUnauthUser";
 
 export default function add() {
   const supabase = useSupabaseClient();
   const session = useSession();
   const router = useRouter();
+  const maxTags = 10;
   const [file, setFile] = React.useState("");
   const [fileHelperText, setFileHelperText] = React.useState("");
   const [nameErrorText, setNameErrorText] = React.useState("");
@@ -23,35 +25,95 @@ export default function add() {
   const [tags, setTags] = React.useState([]);
   const [submissionState, setSubmissionState] = React.useState("");
 
-  async function redirectUnauthUser() {
-    const { data, error } = await supabase.auth.getUser();
-    if (error) {
-      router.push("/login");
-    }
-  }
-
   React.useEffect(() => {
-    redirectUnauthUser();
+    redirectUnauthUser({
+      supabase: supabase,
+      router: router,
+    });
   }, []);
 
   async function handleSubmit() {
-    if (!file || !name || tags.length === 0) {
+    if (
+      !file ||
+      !name ||
+      tags.length === 0 ||
+      tags.length > maxTags ||
+      checkDuplicateTags(tags) === true ||
+      checkIfSpacesInTags(tags) === true
+    ) {
       if (!file) {
         setFileHelperText("Image Upload is required");
+      } else {
+        setFileHelperText("");
       }
+
       if (!name) {
         setNameErrorText("Name is required");
+      } else {
+        setNameErrorText("");
       }
-      if (tags.length === 0) {
-        console.log("erorororooororooro");
-        setTagsErrorText("At least one tag is required");
+
+      /* check for errors in tags */
+      if (
+        tags.length === 0 ||
+        tags.length > maxTags ||
+        checkDuplicateTags(tags) === true ||
+        checkIfSpacesInTags(tags) === true
+      ) {
+        if (tags.length === 0) {
+          setTagsErrorText("At least one tag is required");
+        }
+
+        if (tags.length > maxTags) {
+          setTagsErrorText(
+            "Exceeded maximum number of tags (" +
+              tags.length +
+              "/" +
+              maxTags +
+              ")"
+          );
+        }
+
+        if (checkDuplicateTags(tags) === true) {
+          setTagsErrorText("Duplicate tags are not allowed");
+        }
+
+        if (checkIfSpacesInTags(tags) === true) {
+          setTagsErrorText("Tags cannot contain spaces");
+        }
+      } else {
+        setTagsErrorText("");
       }
     } else {
+      setFileHelperText("");
+      setNameErrorText("");
+      setTagsErrorText("");
       setImageId(uuid());
       setSubmissionState("loading");
       uploadImage();
       uploadMetadataToTable();
     }
+  }
+
+  function checkDuplicateTags(tags) {
+    let tagsAlreadySeen = [];
+
+    for (let i = 0; i < tags.length; i++) {
+      if (tagsAlreadySeen.includes(tags[i])) {
+        return true;
+      }
+      tagsAlreadySeen.push(tags[i]);
+    }
+    return false;
+  }
+
+  function checkIfSpacesInTags(tags) {
+    for (let i = 0; i < tags.length; i++) {
+      if (tags[i].includes(" ")) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /* console.log with purple background and white text the submission state everytime it updates */
@@ -151,7 +213,7 @@ export default function add() {
         <MuiChipsInput
           error={tagsErrorText == [] ? false : true}
           helperText={tagsErrorText}
-          label="Tags *"
+          label={"Tags * (" + tags.length + "/" + maxTags + ")"}
           value={tags}
           onChange={(e) => setTags(e)}
           placeholder=""

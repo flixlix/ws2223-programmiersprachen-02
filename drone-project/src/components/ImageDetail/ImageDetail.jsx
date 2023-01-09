@@ -14,6 +14,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import style from "./ImageDetail.module.css";
 import ProfileSection from "../ProfileSection/ProfileSection";
 import { useRouter } from "next/router";
+import getUserMetadataFromId from "../../utils/profiles/getUserMetadataFromId";
 
 export default function ImageDetail({ onClose, open, item, imageSrc }) {
   const supabase = useSupabaseClient();
@@ -23,26 +24,18 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
 
   /* handle chip click */
   function handleChipClick(e) {
-    console.log(e.target.innerText);
     /* don't allow spaces */
     const query = e.target.innerText.replace(/\s/g, "+");
     router.push(`/?urlSearchQuery=${query}`);
     onClose();
   }
 
-  async function getUserMetadata() {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", item.user_id);
-    if (error) {
-      console.log(error);
-    }
-    setUserMetadata(data?.[0]);
-  }
-
   React.useEffect(() => {
-    getUserMetadata();
+    getUserMetadataFromId({
+      supabase,
+      user_id: item.user_id,
+      setUserMetadata,
+    });
   }, []);
 
   return (
