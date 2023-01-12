@@ -41,9 +41,13 @@ export default function DisabledEnabledTextField({
         flexDirection: "row",
         alignItems: "space-between",
         justifyContent: "center",
+        width: "100%",
+        padding: 0,
+        margin: 0,
       }}
     >
       <TextField
+        fullWidth
         label={label}
         value={value}
         onChange={handleChangeValue}
@@ -51,7 +55,6 @@ export default function DisabledEnabledTextField({
         error={error}
         sx={{
           width: "100%",
-          margin: "0.5rem",
         }}
       />
 

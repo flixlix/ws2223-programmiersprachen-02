@@ -5,14 +5,19 @@ import { useRouter } from "next/router";
 import {
   Box,
   Button,
-  Grid,
+  Stack,
   Paper,
   TextField,
   Typography,
   InputAdornment,
 } from "@mui/material";
-import DisabledEnabledTextField from "../src/form/DisabledEnabledTextField/DisabledEnabledTexField";
-import ShowHidePasswordTextField from "../src/form/ShowHidePasswordTextField/ShowHidePasswordTextField";
+import ProfileSidebar from "../src/components/ProfileSidebar/ProfileSidebar";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ImageIcon from "@mui/icons-material/Image";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ProfilePage from "../src/components/Profile/ProfilePage/ProfilePage";
+import UploadsPage from "../src/components/Profile/UploadPage/UploadPage";
+import SettingsPage from "../src/components/Profile/SettingPage/SettingPage";
 
 export default function profile() {
   const supabase = useSupabaseClient();
@@ -26,6 +31,29 @@ export default function profile() {
   const [userFriendlyName, setUserFriendlyName] = React.useState("");
 
   const [emailDisabled, setEmailDisabled] = React.useState(true);
+
+  const [menus, setMenus] = React.useState([
+    {
+      title: "Profile",
+      icon: <AccountCircleIcon />,
+      component: <ProfilePage />,
+      selected: true,
+    },
+    {
+      title: "Uploads",
+      icon: <ImageIcon />,
+      component: <UploadsPage />,
+      selected: false,
+    },
+    {
+      title: "Settings",
+      icon: <SettingsIcon />,
+      component: <SettingsPage />,
+      selected: false,
+      bottom: true,
+    },
+  ]);
+  const [currentMenu, setCurrentMenu] = React.useState(menus[0]);
 
   function NoProfile() {
     function handleLoginButton() {
@@ -54,63 +82,28 @@ export default function profile() {
 
   function Profile() {
     return (
-      <Grid
-        item
-        xs={12}
-        sm={8}
-        md={5}
-        elevation={6}
-        style={{
-          height: "100%",
-        }}
-      >
-        <Box
-          className="profile-page"
-          sx={{
-            my: 8,
-            mx: 4,
+      <>
+        <ProfileSidebar
+          menus={menus}
+          currentMenu={currentMenu}
+          setCurrentMenu={setCurrentMenu}
+          setMenus={setMenus}
+          sidebarWidth={300}
+        />
+        <div
+          style={{
+            boxSizing: "border-box",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+            marginLeft: 300,
           }}
         >
-          <Typography variant="h4">Profile</Typography>
-          <DisabledEnabledTextField
-            label="Email"
-            value={userEmail}
-            setValue={(e) => setUserEmail(e)}
-            disabled={emailDisabled}
-            setDisabled={(state) => setEmailDisabled(state)}
-          />
-          <DisabledEnabledTextField
-            label="Username"
-            value={username}
-            setValue={(e) => setUsername(e)}
-          />
-          <DisabledEnabledTextField
-            label="Friendly Name"
-            value={userFriendlyName}
-            setValue={(e) => setUserFriendlyName(e)}
-          />
-          <Button
-            variant="outlined"
-            padding="normal"
-            margin="normal"
-            color="success"
-          >
-            Update
-          </Button>
-          <Button
-            variant="outlined"
-            margin="normal"
-            padding="normal"
-            color="error"
-            onClick={() => supabase.auth.signOut()}
-          >
-            Logout
-          </Button>
-        </Box>
-      </Grid>
+          {currentMenu.component}
+        </div>
+      </>
     );
   }
   return (
@@ -119,7 +112,7 @@ export default function profile() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       <Header />

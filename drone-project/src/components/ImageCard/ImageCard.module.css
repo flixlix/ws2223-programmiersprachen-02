@@ -11,3 +11,7 @@
 .imgCardContainer:hover .imgCard {
   transform: scale(0.99);
 }
+
+.imgCardContainer:active .imgCard {
+  transform: scale(0.98);
+}

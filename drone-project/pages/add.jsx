@@ -12,7 +12,7 @@ export default function add() {
   const supabase = useSupabaseClient();
   const session = useSession();
   const router = useRouter();
-  const maxTags = 10;
+  const maxTags = 50;
   const [file, setFile] = React.useState("");
   const [fileHelperText, setFileHelperText] = React.useState("");
   const [nameErrorText, setNameErrorText] = React.useState("");
@@ -36,10 +36,12 @@ export default function add() {
     if (
       !file ||
       !name ||
-      tags.length === 0 ||
-      tags.length > maxTags ||
-      checkDuplicateTags(tags) === true ||
-      checkIfSpacesInTags(tags) === true
+      checkTagsErrors({
+        tags,
+        setTagsErrorText,
+        maxTags,
+        checkForEmpty: true,
+      })
     ) {
       if (!file) {
         setFileHelperText("Image Upload is required");
@@ -53,37 +55,12 @@ export default function add() {
         setNameErrorText("");
       }
 
-      /* check for errors in tags */
-      if (
-        tags.length === 0 ||
-        tags.length > maxTags ||
-        checkDuplicateTags(tags) === true ||
-        checkIfSpacesInTags(tags) === true
-      ) {
-        if (tags.length === 0) {
-          setTagsErrorText("At least one tag is required");
-        }
-
-        if (tags.length > maxTags) {
-          setTagsErrorText(
-            "Exceeded maximum number of tags (" +
-              tags.length +
-              "/" +
-              maxTags +
-              ")"
-          );
-        }
-
-        if (checkDuplicateTags(tags) === true) {
-          setTagsErrorText("Duplicate tags are not allowed");
-        }
-
-        if (checkIfSpacesInTags(tags) === true) {
-          setTagsErrorText("Tags cannot contain spaces");
-        }
-      } else {
-        setTagsErrorText("");
-      }
+      checkTagsErrors({
+        tags,
+        setTagsErrorText,
+        maxTags,
+        checkForEmpty: true,
+      });
     } else {
       setFileHelperText("");
       setNameErrorText("");
@@ -94,6 +71,33 @@ export default function add() {
       uploadMetadataToTable();
     }
   }
+
+  function checkTagsErrors({ tags, setTagsErrorText, maxTags, checkForEmpty }) {
+    if (checkForEmpty === true) {
+      if (tags.length === 0) {
+        setTagsErrorText("At least one tag is required");
+        return true;
+      }
+    }
+    if (tags.length > maxTags) {
+      setTagsErrorText(
+        "Exceeded maximum number of tags (" + tags.length + "/" + maxTags + ")"
+      );
+      return true;
+    }
+    if (checkDuplicateTags(tags) === true) {
+      setTagsErrorText("Duplicate tags are not allowed");
+      return true;
+    }
+    if (checkIfSpacesInTags(tags) === true) {
+      setTagsErrorText("Tags cannot contain spaces");
+      return true;
+    }
+    setTagsErrorText("");
+    return false;
+  }
+
+
 
   function checkDuplicateTags(tags) {
     let tagsAlreadySeen = [];
@@ -117,9 +121,9 @@ export default function add() {
   }
 
   /* console.log with purple background and white text the submission state everytime it updates */
-  React.useEffect(() => {
+  /* React.useEffect(() => {
     console.log("%c" + submissionState, "background: purple; color: white");
-  }, [submissionState]);
+  }, [submissionState]); */
 
   async function uploadImage() {
     const { data, error } = await supabase.storage
@@ -132,12 +136,10 @@ export default function add() {
       setSubmissionState("error");
       console.log(error);
     }
-    console.log(data);
     setSubmissionState("success");
   }
 
   async function uploadMetadataToTable() {
-    console.log(name, description, tags, session.user.id, imagePath);
     const { data, error } = await supabase.from("photos_metadata").insert({
       name: name ? name : "No Name",
       description: description ? description : "No Description",
@@ -157,6 +159,16 @@ export default function add() {
     setImagePath(imageId + "." + e.target.files[0].name.split(".").pop());
   }
 
+  function handleTagsChange(e) {
+    checkTagsErrors({
+      tags: e,
+      setTagsErrorText,
+      maxTags,
+      checkForEmpty: false,
+    });
+    setTags(e);
+  }
+
   return (
     <div>
       <Header />
@@ -164,7 +176,7 @@ export default function add() {
         spacing={2}
         direction="column"
         sx={{
-          padding: 2,
+          padding: 5,
           width: "500px",
         }}
       >
@@ -215,7 +227,7 @@ export default function add() {
           helperText={tagsErrorText}
           label={"Tags * (" + tags.length + "/" + maxTags + ")"}
           value={tags}
-          onChange={(e) => setTags(e)}
+          onChange={(e) => handleTagsChange(e)}
           placeholder=""
         />
         {submissionState == "loading" ? (
