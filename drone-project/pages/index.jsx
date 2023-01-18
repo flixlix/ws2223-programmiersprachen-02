@@ -13,7 +13,6 @@ const Home = () => {
   return (
     <div id="home">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      {/* <TemporaryDrawer /> */}
       <Gallery searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     </div>
   );

@@ -8,7 +8,13 @@ import getTableMetadataPhotos from "../../utils/image_fetching/getTableMetadataP
 import getAllProfiles from "../../utils/profiles/getAllProfiles";
 import searchPhotos from "../../utils/search/searchPhotos";
 
-export default function Gallery({ photos, searchQuery, setSearchQuery }) {
+export default function Gallery({
+  photos,
+  searchQuery,
+  setSearchQuery,
+  hoverNoTitle,
+  handleImgClick,
+}) {
   const supabase = useSupabaseClient();
   const router = useRouter();
   const { urlSearchQuery } = router.query;
@@ -34,7 +40,12 @@ export default function Gallery({ photos, searchQuery, setSearchQuery }) {
   }, [searchQuery]);
 
   return (
-    <div id="gallery-masonry">
+    <div
+      id="gallery-masonry"
+      style={{
+        width: "100%",
+      }}
+    >
       <Box
         sx={{
           flexGrow: 1,
@@ -54,7 +65,11 @@ export default function Gallery({ photos, searchQuery, setSearchQuery }) {
                 {photos.map((item) => {
                   return (
                     <div key={item.id} id={item.id}>
-                      <ImageCard item={item} />
+                      <ImageCard
+                        item={item}
+                        hoverNoTitle={hoverNoTitle}
+                        handleImgClick={handleImgClick}
+                      />
                     </div>
                   );
                 })}
@@ -64,7 +79,11 @@ export default function Gallery({ photos, searchQuery, setSearchQuery }) {
                 tableSearchResults.map((item) => {
                   return (
                     <div key={item.id}>
-                      <ImageCard item={item} />
+                      <ImageCard
+                        item={item}
+                        hoverNoTitle={hoverNoTitle}
+                        handleImgClick={handleImgClick}
+                      />
                     </div>
                   );
                 })
@@ -80,7 +99,11 @@ export default function Gallery({ photos, searchQuery, setSearchQuery }) {
               table.map((item) => {
                 return (
                   <div key={item.id}>
-                    <ImageCard item={item} />
+                    <ImageCard
+                      item={item}
+                      hoverNoTitle={hoverNoTitle}
+                      handleImgClick={handleImgClick}
+                    />
                   </div>
                 );
               })

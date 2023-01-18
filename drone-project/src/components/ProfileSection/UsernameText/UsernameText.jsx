@@ -23,7 +23,7 @@ export default function UsernameText({ user_metadata, handleClick }) {
         marginLeft: "1rem",
       }}
     >
-      {user_metadata.friendly_name && user_metadata.username ? (
+      {user_metadata.first_name && user_metadata.username ? (
         <Typography
           variant="subtitle1"
           style={{
@@ -33,7 +33,8 @@ export default function UsernameText({ user_metadata, handleClick }) {
             handleClick();
           }}
         >
-          {user_metadata.friendly_name || user_metadata.username}
+          {user_metadata?.first_name + " " + user_metadata?.last_name ||
+            user_metadata.username}
         </Typography>
       ) : (
         <Skeleton

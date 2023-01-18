@@ -68,7 +68,9 @@ export default function ProfileSidebar({
               disablePadding
             >
               <ListItemButton
-                onClick={(e) => handleClickMenu(e, index)}
+                onClick={(e) => {
+                  !item.selected && handleClickMenu(e, index);
+                }}
                 selected={item.selected}
                 sx={{
                   borderRadius: 2,

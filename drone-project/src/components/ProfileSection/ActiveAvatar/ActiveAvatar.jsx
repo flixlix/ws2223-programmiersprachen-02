@@ -64,10 +64,12 @@ export default function ActiveAvatar({
                 height: height || 40,
               }}
             />
-          ) : user_metadata.friendly_name ? (
+          ) : user_metadata.first_name ? (
             <Avatar
-              {...stringAvatar(user_metadata.friendly_name)}
-              alt={user_metadata.friendly_name}
+              {...stringAvatar(
+                user_metadata.first_name + " " + user_metadata.last_name
+              )}
+              alt={user_metadata.first_name}
               sx={{
                 width: width || 40,
                 height: height || 40,

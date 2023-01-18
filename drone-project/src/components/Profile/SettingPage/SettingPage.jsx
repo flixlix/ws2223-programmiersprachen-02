@@ -1,8 +1,14 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-
+import { Box, Button, Typography } from "@mui/material";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 export default function UploadsPage() {
+  const supabase = useSupabaseClient();
+
+  async function handleLogoutButtonClick() {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.log("Error logging out:", error.message);
+  }
   return (
     <Box
       sx={{
@@ -15,6 +21,9 @@ export default function UploadsPage() {
       }}
     >
       <Typography variant="h5">Settings</Typography>
+      <Button variant="contained" onClick={() => handleLogoutButtonClick()}>
+        Logout
+      </Button>
     </Box>
   );
 }

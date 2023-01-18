@@ -10,7 +10,7 @@ import {
 } from "@mui/joy";
 import style from "./ImageCard.module.css";
 
-export default function ImageCard({ item }) {
+export default function ImageCard({ item, hoverNoTitle, handleImgClick }) {
   const [loading, setLoading] = React.useState(true);
   const [detailOpen, setDetailOpen] = React.useState(false);
   const [aspectRatio, setAspectRatio] = React.useState(1);
@@ -52,7 +52,6 @@ export default function ImageCard({ item }) {
             onLoad={() => {
               setLoading(false);
             }}
-            loading="lazy"
           />
         </Skeleton>
       ) : (
@@ -62,7 +61,9 @@ export default function ImageCard({ item }) {
             cursor: "pointer",
           }}
           className={style.imgCardContainer}
-          onClick={() => setDetailOpen(true)}
+          onClick={() => {
+            handleImgClick ? handleImgClick(item) : setDetailOpen(true);
+          }}
           onMouseOver={() => setHoverState(true)}
           onMouseLeave={() => setHoverState(false)}
         >
@@ -81,15 +82,15 @@ export default function ImageCard({ item }) {
                     alt={item.name}
                   />
                 </CardCover>
-                {hoverState && (
+                {hoverState && !hoverNoTitle ? (
                   <CardCover
                     sx={{
                       background:
                         "linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 4rem), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 5rem)",
                     }}
                   />
-                )}
-                {hoverState && (
+                ) : null}
+                {hoverState && !hoverNoTitle ? (
                   <CardContent
                     sx={{
                       justifyContent: "flex-end",
@@ -112,7 +113,7 @@ export default function ImageCard({ item }) {
                       {item.name || "Untitled"}
                     </Typography>
                   </CardContent>
-                )}
+                ) : null}
               </Card>
             </AspectRatio>
           </Paper>

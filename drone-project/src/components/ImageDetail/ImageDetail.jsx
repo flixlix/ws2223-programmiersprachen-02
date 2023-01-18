@@ -8,8 +8,11 @@ import {
   Chip,
   Typography,
   Avatar,
+  Box,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 /* import css */
 import style from "./ImageDetail.module.css";
 import ProfileSection from "../ProfileSection/ProfileSection";
@@ -20,7 +23,18 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
   const supabase = useSupabaseClient();
   const router = useRouter();
   const session = useSession();
-  const [user_metadata, setUserMetadata] = React.useState({ id: "" });
+  const [user_metadata, setUserMetadata] = React.useState("");
+  const [loggedInLiked, setLoggedInLiked] = React.useState(
+    item.likes.includes(session.user.id)
+  );
+  const [likesCount, setLikesCount] = React.useState(0);
+  React.useEffect(() => {
+    getUserMetadataFromId({
+      supabase,
+      user_id: item.user_id,
+      setUserMetadata,
+    });
+  }, []);
 
   /* handle chip click */
   function handleChipClick(e) {
@@ -31,12 +45,50 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
   }
 
   React.useEffect(() => {
-    getUserMetadataFromId({
-      supabase,
-      user_id: item.user_id,
-      setUserMetadata,
-    });
-  }, []);
+    if (session.user) {
+      if (item.likes.includes(session.user.id)) {
+        setLoggedInLiked(true);
+      } else {
+        setLoggedInLiked(false);
+      }
+      setLikesCount(item.likes.length);
+    }
+  }, [supabase, session]);
+
+  React.useEffect(() => {
+    if (session.user) {
+      if (loggedInLiked === true || loggedInLiked === false)
+        setTableLiked(loggedInLiked);
+    }
+  }, [loggedInLiked]);
+
+  async function setTableLiked(loggedInLiked) {
+    const hasUserLiked = item.likes.includes(session.user.id);
+    if (!hasUserLiked === loggedInLiked) {
+      /* announce change in like or dislike */
+      console.log("%c" + "there was a change", "background: #fff; color: #000");
+      if (loggedInLiked === true) {
+        console.log("%c" + "user liked", "background: #0f0; color: #000");
+        item.likes.push(user_metadata.id);
+      } else if (loggedInLiked === false) {
+        console.log("%c" + "user unliked", "background: #f00; color: #000");
+        item.likes = item.likes.filter((likeElement) => {
+          likeElement !== user_metadata.id;
+        });
+      }
+    }
+
+    setLikesCount(item.likes.length);
+    const { data, error } = await supabase
+      .from("photos_metadata")
+      /* insert user_metadata.id in array of likes if element does not exist */
+      .update({
+        likes: item.likes,
+      })
+      .eq("id", item.id);
+    if (error) console.log(error);
+    if (data) console.log(data);
+  }
 
   return (
     <Dialog onClose={() => onClose()} open={open} maxWidth="lg" fullWidth>
@@ -68,9 +120,42 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
         </div>
         <div id="description-container" className={style.description_container}>
           <div id="left-side-description-container">
-            <div id="contributor-section">
+            <Box
+              id="contributor-section"
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <ProfileSection user_metadata={user_metadata} />
-            </div>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 2,
+                }}
+              >
+                <Typography variant="caption">
+                  {likesCount + " "}
+                  {likesCount === 1 ? "like" : "likes"}
+                </Typography>
+                <IconButton
+                  onClick={() => {
+                    setLoggedInLiked(!loggedInLiked);
+                  }}
+                >
+                  {loggedInLiked ? (
+                    <FavoriteIcon color="error" />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
+                </IconButton>
+              </Box>
+            </Box>
             <p>{item.description}</p>
           </div>
           <div id="right-side-description-container">

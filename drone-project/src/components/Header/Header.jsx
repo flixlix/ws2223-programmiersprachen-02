@@ -104,7 +104,7 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
     if (error) {
       console.log(error);
     }
-    setUserMetadata(data[0]);
+    if (data) setUserMetadata(data[0]);
   }
 
   React.useEffect(() => {
