@@ -91,97 +91,104 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
   }
 
   return (
-    <Dialog onClose={() => onClose()} open={open} maxWidth="lg" fullWidth>
-      <DialogTitle>
-        {item.name}
-        <IconButton
-          aria-label="close"
-          onClick={() => onClose()}
-          sx={{
-            position: "absolute",
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        {/* container for image */}
-        <div id="image-container" className={style.image_container}>
-          <img
-            id="image"
-            className={style.image}
-            alt={item.name}
-            loading="lazy"
-            src={imageSrc}
-          />
-        </div>
-        <div id="description-container" className={style.description_container}>
-          <div id="left-side-description-container">
-            <Box
-              id="contributor-section"
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <ProfileSection user_metadata={user_metadata} />
+    /* if item and imageSrc are available */
+    item &&
+    imageSrc && (
+      <Dialog onClose={() => onClose()} open={open} maxWidth="lg" fullWidth>
+        <DialogTitle>
+          {item.name}
+          <IconButton
+            aria-label="close"
+            onClick={() => onClose()}
+            sx={{
+              position: "absolute",
+              right: 8,
+              top: 8,
+              color: (theme) => theme.palette.grey[500],
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          {/* container for image */}
+          <div id="image-container" className={style.image_container}>
+            <img
+              id="image"
+              className={style.image}
+              alt={item.name}
+              loading="lazy"
+              src={imageSrc}
+            />
+          </div>
+          <div
+            id="description-container"
+            className={style.description_container}
+          >
+            <div id="left-side-description-container">
               <Box
+                id="contributor-section"
                 sx={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  gap: 2,
                 }}
               >
-                <Typography variant="caption">
-                  {likesCount + " "}
-                  {likesCount === 1 ? "like" : "likes"}
-                </Typography>
-                <IconButton
-                  onClick={() => {
-                    setLoggedInLiked(!loggedInLiked);
+                <ProfileSection user_metadata={user_metadata} />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: 2,
                   }}
                 >
-                  {loggedInLiked ? (
-                    <FavoriteIcon color="error" />
-                  ) : (
-                    <FavoriteBorderIcon />
-                  )}
-                </IconButton>
+                  <Typography variant="caption">
+                    {likesCount + " "}
+                    {likesCount === 1 ? "like" : "likes"}
+                  </Typography>
+                  <IconButton
+                    onClick={() => {
+                      setLoggedInLiked(!loggedInLiked);
+                    }}
+                  >
+                    {loggedInLiked ? (
+                      <FavoriteIcon color="error" />
+                    ) : (
+                      <FavoriteBorderIcon />
+                    )}
+                  </IconButton>
+                </Box>
               </Box>
-            </Box>
-            <p>{item.description}</p>
-          </div>
-          <div id="right-side-description-container">
-            <Typography variant="h6" component="h6">
-              Tags
-              <Typography variant="caption">
-                {" ("}
-                {item.tags.length}
-                {"/50)"}
+              <p>{item.description}</p>
+            </div>
+            <div id="right-side-description-container">
+              <Typography variant="h6" component="h6">
+                Tags
+                <Typography variant="caption">
+                  {" ("}
+                  {item.tags.length}
+                  {"/50)"}
+                </Typography>
               </Typography>
-            </Typography>
-            <div className={style.tag_container}>
-              {/* separate between elements in array with comma */}
-              {item.tags.map((tag, index) => {
-                return (
-                  <Chip
-                    key={index}
-                    label={tag}
-                    onClick={(e) => handleChipClick(e)}
-                  />
-                );
-              })}
+              <div className={style.tag_container}>
+                {/* separate between elements in array with comma */}
+                {item.tags.map((tag, index) => {
+                  return (
+                    <Chip
+                      key={index}
+                      label={tag}
+                      onClick={(e) => handleChipClick(e)}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+        </DialogContent>
+      </Dialog>
+    )
   );
 }
