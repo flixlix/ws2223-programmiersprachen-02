@@ -31,7 +31,6 @@ export default function profile() {
   const [userFriendlyName, setUserFriendlyName] = React.useState("");
 
   const [emailDisabled, setEmailDisabled] = React.useState(true);
-
   const [menus, setMenus] = React.useState([
     {
       title: "Profile",
@@ -45,13 +44,13 @@ export default function profile() {
       component: <UploadsPage />,
       selected: false,
     },
-    {
+    /* {
       title: "Settings",
       icon: <SettingsIcon />,
       component: <SettingsPage />,
       selected: false,
       bottom: true,
-    },
+    }, */
   ]);
   const [currentMenu, setCurrentMenu] = React.useState(menus[0]);
 

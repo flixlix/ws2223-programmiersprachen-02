@@ -305,7 +305,7 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
             </Box>
             <Box
               sx={{
-                display: { xs: "none", md: "flex" },
+                display: "flex",
               }}
             >
               <IconButton
@@ -337,7 +337,7 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
                 </Link>
               )}
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 display: { xs: "flex", md: "none" },
                 justifyContent: "flex-end",
@@ -353,12 +353,12 @@ export default function Header({ searchQuery, setSearchQuery }, props) {
               >
                 <MoreIcon />
               </IconButton>
-            </Box>
+            </Box> */}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
-      {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMobileMenu} */}
+      {/* {renderMenu} */}
     </Box>
   );
 }

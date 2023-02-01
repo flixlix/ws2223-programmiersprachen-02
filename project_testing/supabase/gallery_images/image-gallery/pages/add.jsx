@@ -22,7 +22,7 @@ export default function add() {
   return (
     <div style={{ width: "500px", margin: "2rem" }}>
       <Typography variant="h1">Add Images</Typography>
-      <Stack spacing={2} direction="column">
+      <Stack spacing={2}>
         <TextField
           id="name-text-field"
           type="text"

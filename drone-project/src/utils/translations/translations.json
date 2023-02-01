@@ -1,0 +1,178 @@
+{
+    "gb": {
+        "translation": {
+            "Settings": "Settings",
+            "English": "English",
+            "German": "German",
+            "Portuguese": "Portuguese",
+            "French": "French",
+            "Spanish": "Spanish",
+            "Russian": "Russian",
+            "Italian": "Italian",
+            "Dutch": "Dutch",
+            "Turkish": "Turkish",
+            "Indonesian": "Indonesian",
+            "Ukrainian": "Ukrainian"
+        }
+    },
+    "de": {
+        "translation": {
+            "Settings": "Einstellungen",
+            "English": "Englisch",
+            "German": "Deutsch",
+            "Portuguese": "Portugiesisch",
+            "French": "Französisch",
+            "Spanish": "Spanisch",
+            "Russian": "Russisch",
+            "Italian": "Italienisch",
+            "Dutch": "Niederländisch",
+            "Turkish": "Türkisch",
+            "Indonesian": "Indonesisch",
+            "Ukrainian": "Ukrainisch"
+        }
+    },
+    "pt": {
+        "translation": {
+            "Settings": "Configurações",
+            "English": "Inglês",
+            "German": "Alemão",
+            "Portuguese": "Português",
+            "French": "Francês",
+            "Spanish": "Espanhol",
+            "Russian": "Russo",
+            "Italian": "Italiano",
+            "Dutch": "Holandês",
+            "Turkish": "Turco",
+            "Indonesian": "Indonésio",
+            "Ukrainian": "Ucraniano"
+        }
+    },
+    "fr": {
+        "translation": {
+            "Settings": "Paramètres",
+            "English": "Anglais",
+            "German": "Allemand",
+            "Portuguese": "Portugais",
+            "French": "Français",
+            "Spanish": "Espagnol",
+            "Russian": "Russe",
+            "Italian": "Italien",
+            "Dutch": "Néerlandais",
+            "Turkish": "Turc",
+            "Indonesian": "Indonésien",
+            "Ukrainian": "Ukrainien"
+        }
+    },
+    "es": {
+        "translation": {
+            "Settings": "Configuración",
+            "English": "Inglés",
+            "German": "Alemán",
+            "Portuguese": "Portugués",
+            "French": "Francés",
+            "Spanish": "Español",
+            "Russian": "Ruso",
+            "Italian": "Italiano",
+            "Dutch": "Holandés",
+            "Turkish": "Turco",
+            "Indonesian": "Indonesio",
+            "Ukrainian": "Ucraniano"
+        }
+    },
+    "ru": {
+        "translation": {
+            "Settings": "Настройки",
+            "English": "Английский",
+            "German": "Немецкий",
+            "Portuguese": "Португальский",
+            "French": "Французский",
+            "Spanish": "Испанский",
+            "Russian": "Русский",
+            "Italian": "Итальянский",
+            "Dutch": "Голландский",
+            "Turkish": "Турецкий",
+            "Indonesian": "Индонезийский",
+            "Ukrainian": "Украинский"
+        }
+    },
+    "it": {
+        "translation": {
+            "Settings": "Impostazioni",
+            "English": "Inglese",
+            "German": "Tedesco",
+            "Portuguese": "Portoghese",
+            "French": "Francese",
+            "Spanish": "Spagnolo",
+            "Russian": "Russo",
+            "Italian": "Italiano",
+            "Dutch": "Olandese",
+            "Turkish": "Turco",
+            "Indonesian": "Indonesiano",
+            "Ukrainian": "Ucraino"
+        }
+    },
+    "nl": {
+        "translation": {
+            "Settings": "Instellingen",
+            "English": "Engels",
+            "German": "Duits",
+            "Portuguese": "Portugees",
+            "French": "Frans",
+            "Spanish": "Spaans",
+            "Russian": "Russisch",
+            "Italian": "Italiaans",
+            "Dutch": "Nederlands",
+            "Turkish": "Turks",
+            "Indonesian": "Indonesisch",
+            "Ukrainian": "Oekraïens"
+        }
+    },
+    "tr": {
+        "translation": {
+            "Settings": "Ayarlar",
+            "English": "İngilizce",
+            "German": "Almanca",
+            "Portuguese": "Portekizce",
+            "French": "Fransizca",
+            "Spanish": "İspanyolca",
+            "Russian": "Rusça",
+            "Italian": "İtalyanca",
+            "Dutch": "Flemenkçe",
+            "Turkish": "Türkçe",
+            "Indonesian": "Endonezya dili",
+            "Ukrainian": "Ukraynaca"
+        }
+    },
+    "id": {
+        "translation": {
+            "Settings": "Pengaturan",
+            "English": "Inggris",
+            "German": "Jerman",
+            "Portuguese": "Portugis",
+            "French": "Perancis",
+            "Spanish": "Spanyol",
+            "Russian": "Rusia",
+            "Italian": "Italia",
+            "Dutch": "Belanda",
+            "Turkish": "Turki",
+            "Indonesian": "Indonesia",
+            "Ukrainian": "Ukraina"
+        }
+    },
+    "ua": {
+        "translation": {
+            "Settings": "Налаштування",
+            "English": "Англійська",
+            "German": "Німецька",
+            "Portuguese": "Португальська",
+            "French": "Французька",
+            "Spanish": "Іспанська",
+            "Russian": "Російська",
+            "Italian": "Італійська",
+            "Dutch": "Голландська",
+            "Turkish": "Турецька",
+            "Indonesian": "Індонезійська",
+            "Ukrainian": "Українська"
+        }
+    }
+}

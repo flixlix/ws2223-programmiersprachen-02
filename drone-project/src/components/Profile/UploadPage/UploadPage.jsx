@@ -32,17 +32,9 @@ export default function UploadPage() {
           overflow: "hidden",
         }}
       >
-        <Stack
-          spacing={0}
-          direction="column"
-          id="edit-upload-left"
-          sx={{
-            padding: 5,
-            paddingBottom: 0,
-          }}
-        >
-          <Typography variant="h5">Your Uploads</Typography>
-        </Stack>
+        <Typography variant="h5" sx={{
+          paddingInline: 5,
+        }}>Your Uploads</Typography>
         <Gallery
           photos={userPhotos}
           hoverNoTitle

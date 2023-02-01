@@ -17,9 +17,11 @@ import getAllProfiles from "../../../utils/profiles/getAllProfiles";
 import { useSupabaseClient, useSession } from "@supabase/auth-helpers-react";
 import { LoadingButton } from "@mui/lab";
 import updateUserMetadata from "../../../utils/profiles/updateUserMetadata";
+import { useRouter } from "next/router";
 
 export default function ProfilePage() {
   const supabase = useSupabaseClient();
+  const router = useRouter();
   const session = useSession();
   const user_id = session.user.id;
   const [profiles, setProfiles] = React.useState("");
@@ -93,6 +95,11 @@ export default function ProfilePage() {
       setStatus("success");
     }
   }
+  async function handleLogoutButtonClick() {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.log("Error logging out:", error.message);
+    router.push("/login");
+  }
 
   return (
     <Stack
@@ -105,14 +112,27 @@ export default function ProfilePage() {
         padding: 2,
       }}
     >
-      <Typography
-        variant="h5"
+      <Box
         sx={{
-          alignSelf: "flex-start",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
         }}
       >
-        Profile Details
-      </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            alignSelf: "flex-start",
+          }}
+        >
+          Profile Details
+        </Typography>
+        <Button color="error" onClick={() => handleLogoutButtonClick()}>
+          Log out
+        </Button>
+      </Box>
       <Stack
         sx={{
           margin: 2,

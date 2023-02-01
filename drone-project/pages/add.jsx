@@ -1,12 +1,20 @@
 import React from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import uuid from "react-uuid";
-import { TextField, Stack, Button, Typography, Alert } from "@mui/material";
+import {
+  TextField,
+  Stack,
+  Button,
+  Typography,
+  Alert,
+  Box,
+} from "@mui/material";
 import { MuiChipsInput } from "mui-chips-input";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
 import Header from "../src/components/Header/Header";
 import redirectUnauthUser from "../src/utils/auth/redirecting/redirectUnauthUser";
+import DragDrop from "../src/components/DragDrop/DragDrop";
 
 export default function add() {
   const supabase = useSupabaseClient();
@@ -97,8 +105,6 @@ export default function add() {
     return false;
   }
 
-
-
   function checkDuplicateTags(tags) {
     let tagsAlreadySeen = [];
 
@@ -153,10 +159,10 @@ export default function add() {
     console.log(data);
   }
 
-  async function handleFileUpload(e) {
-    setFile(e.target.files[0]);
-    setImageExtension(e.target.files[0].name.split(".").pop());
-    setImagePath(imageId + "." + e.target.files[0].name.split(".").pop());
+  async function handleFileUpload(fileUploaded) {
+    setFile(fileUploaded);
+    setImageExtension(fileUploaded.name.split(".").pop());
+    setImagePath(imageId + "." + fileUploaded.name.split(".").pop());
   }
 
   function handleTagsChange(e) {
@@ -170,100 +176,110 @@ export default function add() {
   }
 
   return (
-    <div>
-      <Header />
-      <Stack
-        spacing={2}
-        direction="column"
+    <DragDrop
+      onUpload={(e) => handleFileUpload(e[0])}
+      setSubmissionState={setSubmissionState}
+    >
+      <Box
         sx={{
-          padding: 5,
-          width: "500px",
+          height: "100vh",
+          boxSizing: "border-box",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography color={fileHelperText == "" ? "" : "error"}>
-            {file
-              ? file.name + " ( " + Math.floor(file.size / 1024) + " kB )"
-              : fileHelperText
-              ? fileHelperText
-              : "No image selected"}
-            {" *"}
-          </Typography>
-          <Button
+        <Header />
+        <Stack
+          spacing={2}
+          direction="column"
+          sx={{
+            padding: 5,
+            width: "500px",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Typography color={fileHelperText == "" ? "" : "error"}>
+              {file
+                ? file.name + " ( " + Math.floor(file.size / 1024) + " kB )"
+                : fileHelperText
+                ? fileHelperText
+                : "No image selected"}
+              {" *"}
+            </Typography>
+            <Button
+              variant="outlined"
+              aria-required
+              component="label"
+              color="primary"
+            >
+              Upload your image
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                hidden
+                required
+                onChange={(e) => handleFileUpload(e.target.files[0])}
+              />
+            </Button>
+          </div>
+          <TextField
+            required
+            error={nameErrorText == "" ? false : true}
+            helperText={nameErrorText}
+            id="name"
+            type="text"
+            label="Name"
             variant="outlined"
-            aria-required
-            component="label"
-            color="primary"
-          >
-            Upload your image
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              required
-              onChange={(e) => handleFileUpload(e)}
-            />
-          </Button>
-        </div>
-        <TextField
-          required
-          error={nameErrorText == "" ? false : true}
-          helperText={nameErrorText}
-          id="name"
-          type="text"
-          label="Name"
-          variant="outlined"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <TextField
-          id="description"
-          type="text"
-          label="Description"
-          variant="outlined"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <MuiChipsInput
-          error={tagsErrorText == [] ? false : true}
-          helperText={tagsErrorText}
-          label={"Tags * (" + tags.length + "/" + maxTags + ")"}
-          value={tags}
-          onChange={(e) => handleTagsChange(e)}
-          placeholder=""
-        />
-        {submissionState == "loading" ? (
-          <LoadingButton id="submit-button" variant="contained" loading>
-            Submit
-          </LoadingButton>
-        ) : (
-          <Button
-            id="submit-button"
-            variant="contained"
-            onClick={() => handleSubmit()}
-          >
-            Submit
-          </Button>
-        )}
-        {submissionState == "error" ? (
-          <Alert
-            severity="error"
-            onClose={() => {
-              setSubmissionState("");
-            }}
-          >
-            Error submitting your image
-          </Alert>
-        ) : null}
-        {submissionState == "success" ? (
-          <Alert
-            severity="success"
-            onClose={() => {
-              setSubmissionState("");
-            }}
-          >
-            Image successfully submitted
-          </Alert>
-        ) : null}
-      </Stack>
-    </div>
+            onChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            id="description"
+            type="text"
+            label="Description"
+            variant="outlined"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <MuiChipsInput
+            error={tagsErrorText == [] ? false : true}
+            helperText={tagsErrorText}
+            label={"Tags * (" + tags.length + "/" + maxTags + ")"}
+            value={tags}
+            onChange={(e) => handleTagsChange(e)}
+            placeholder=""
+          />
+          {submissionState == "loading" ? (
+            <LoadingButton id="submit-button" variant="contained" loading>
+              Submit
+            </LoadingButton>
+          ) : (
+            <Button
+              id="submit-button"
+              variant="contained"
+              onClick={() => handleSubmit()}
+            >
+              Submit
+            </Button>
+          )}
+          {submissionState == "error" ? (
+            <Alert
+              severity="error"
+              onClose={() => {
+                setSubmissionState("");
+              }}
+            >
+              Error submitting your image
+            </Alert>
+          ) : null}
+          {submissionState == "success" ? (
+            <Alert
+              severity="success"
+              onClose={() => {
+                setSubmissionState("");
+              }}
+            >
+              Image successfully submitted
+            </Alert>
+          ) : null}
+        </Stack>
+      </Box>
+    </DragDrop>
   );
 }
