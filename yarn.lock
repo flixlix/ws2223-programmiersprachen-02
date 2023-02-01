@@ -1230,6 +1230,11 @@ react-router@6.4.3:
   dependencies:
     "@remix-run/router" "1.0.3"
 
+react-use-downloader@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-use-downloader/-/react-use-downloader-1.2.2.tgz#e23f056c1a72df7cda0897f728c036a950b0ea32"
+  integrity sha512-JPvUXXVCPg8WG8xMLkRGXLzlAI08krv7TrtuM6t/tMLdqFE5528ULPH9TSDFDf5sfXNMrdNaiS5YTq0nB7NERg==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"

@@ -17,7 +17,9 @@ import ImageIcon from "@mui/icons-material/Image";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ProfilePage from "../src/components/Profile/ProfilePage/ProfilePage";
 import UploadsPage from "../src/components/Profile/UploadPage/UploadPage";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import SettingsPage from "../src/components/Profile/SettingPage/SettingPage";
+import FavoritePage from "../src/components/Profile/FavoritePage/FavoritePage";
 
 export default function profile() {
   const supabase = useSupabaseClient();
@@ -42,6 +44,12 @@ export default function profile() {
       title: "Uploads",
       icon: <ImageIcon />,
       component: <UploadsPage />,
+      selected: false,
+    },
+    {
+      title: "Favorites",
+      icon: <FavoriteIcon />,
+      component: <FavoritePage />,
       selected: false,
     },
     /* {

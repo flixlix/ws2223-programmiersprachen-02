@@ -9,15 +9,18 @@ import {
   Typography,
   Avatar,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import DownloadIcon from "@mui/icons-material/Download";
 /* import css */
 import style from "./ImageDetail.module.css";
 import ProfileSection from "../ProfileSection/ProfileSection";
 import { useRouter } from "next/router";
 import getUserMetadataFromId from "../../utils/profiles/getUserMetadataFromId";
+import useDownloader from "react-use-downloader";
 
 export default function ImageDetail({ onClose, open, item, imageSrc }) {
   const supabase = useSupabaseClient();
@@ -27,6 +30,12 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
   const [loggedInLiked, setLoggedInLiked] = React.useState(
     item.likes.includes(session.user.id)
   );
+  const { size, elapsed, percentage, download, cancel, error, isInProgress } =
+    useDownloader();
+
+  React.useEffect(() => {
+    console.log(percentage);
+  }, [percentage]);
   const [likesCount, setLikesCount] = React.useState(0);
   React.useEffect(() => {
     getUserMetadataFromId({
@@ -89,6 +98,11 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
     if (error) console.log(error);
     if (data) console.log(data);
   }
+  console.log(imageSrc);
+  /* retrieve the extension of an image from its url path */
+  /* https://regex101.com/r/iV3iM1/1 */
+  const extension = imageSrc.match(/(\.\w{3,4})($|\?)/)[0];
+  console.log(extension);
 
   return (
     /* if item and imageSrc are available */
@@ -158,6 +172,22 @@ export default function ImageDetail({ onClose, open, item, imageSrc }) {
                       <FavoriteIcon color="error" />
                     ) : (
                       <FavoriteBorderIcon />
+                    )}
+                  </IconButton>
+                  <IconButton
+                    onClick={() => {
+                      download(imageSrc, item.name + extension);
+                    }}
+                  >
+                    {!isInProgress && !error && !percentage && (
+                      <DownloadIcon color="primary" />
+                    )}
+                    {isInProgress && (
+                      <CircularProgress
+                        variant="determinate"
+                        value={percentage}
+                        size={24}
+                      />
                     )}
                   </IconButton>
                 </Box>

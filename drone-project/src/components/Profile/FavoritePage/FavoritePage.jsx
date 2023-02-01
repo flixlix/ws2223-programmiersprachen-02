@@ -2,21 +2,20 @@ import React from "react";
 import { Stack, Typography, Box } from "@mui/material";
 import Gallery from "../../Gallery/Gallery";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import getUserPhotos from "../../../utils/image_fetching/getUserPhotos";
-import EditUploads from "./EditUploads/EditUploads";
+import getFavorites from "../../../utils/image_fetching/getFavorites";
 
 export default function UploadPage() {
   const supabase = useSupabaseClient();
   const session = useSession();
-  const [userPhotos, setUserPhotos] = React.useState(null);
+  const [favoritePhotos, setFavoritePhotos] = React.useState(null);
   const [uploadSelected, setUploadSelected] = React.useState(null);
 
   React.useEffect(() => {
-    getUserPhotos({
+    getFavorites({
       supabase,
       session,
       user_id: session.user.id,
-      setUserPhotos,
+      setFavoritePhotos,
     });
   }, []);
 
@@ -32,14 +31,15 @@ export default function UploadPage() {
           overflow: "hidden",
         }}
       >
-        <Typography variant="h5" sx={{
-          paddingInline: 5,
-        }}>Your Uploads</Typography>
-        <Gallery
-          photos={userPhotos}
-          hoverNoTitle
-          handleImgClick={(e) => handleImgClick(e)}
-        />
+        <Typography
+          variant="h5"
+          sx={{
+            paddingInline: 5,
+          }}
+        >
+          Photos you like
+        </Typography>
+        {favoritePhotos && <Gallery hoverNoTitle photos={favoritePhotos} />}
       </Box>
     );
   }
@@ -51,6 +51,7 @@ export default function UploadPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
+        height: "100%",
         width: "100%",
         padding: 2,
       }}
